@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MeIDs x Wascosa Circle Event Hamburg 2026</title>
+  <style>
+    :root {
+      --ink: #111514;
+      --muted: #69736f;
+      --paper: #f6f4ee;
+      --card: #fffdfa;
+      --line: #d9ded6;
+      --accent: #ff5a1f;
+      --mint: #95e4c9;
+      --wascosa: #e1352b;
+      --deep: #172222;
+      --shadow: 0 28px 90px rgba(17, 21, 20, 0.14);
+      --font: Inter, "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font);
+    }
+
+    body { overflow: hidden; }
+
+    .deck {
+      width: 100vw;
+      height: 100vh;
+      display: grid;
+      grid-template-rows: 1fr auto;
+    }
+
+    .slides {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      grid-template-rows: auto 1fr auto;
+      gap: 24px;
+      padding: 44px 58px 30px;
+      background:
+        linear-gradient(120deg, rgba(255, 90, 31, 0.08), transparent 34%),
+        radial-gradient(circle at 86% 12%, rgba(149, 228, 201, 0.25), transparent 25%),
+        var(--paper);
+    }
+
+    .slide.active { display: grid; }
+
+    .slide.dark {
+      background:
+        radial-gradient(circle at 88% 8%, rgba(149, 228, 201, 0.20), transparent 26%),
+        linear-gradient(140deg, #0f1514, #172222);
+      color: #fffaf2;
+    }
+
+    .slide.hero {
+      background:
+        linear-gradient(90deg, rgba(17, 21, 20, 0.92), rgba(17, 21, 20, 0.54)),
+        url("pitch-assets/wascosa-kalikai.png") center / cover;
+      color: #fffaf2;
+    }
+
+    .topbar,
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      min-height: 42px;
+    }
+
+    .brand-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 8px 12px;
+      border: 1px solid rgba(17, 21, 20, 0.12);
+      border-radius: 14px;
+      background: rgba(255, 253, 250, 0.76);
+      backdrop-filter: blur(14px);
+      color: var(--ink);
+      font-weight: 860;
+    }
+
+    .slide.dark .brand-box,
+    .slide.hero .brand-box {
+      border-color: rgba(255, 250, 242, 0.20);
+      background: rgba(255, 250, 242, 0.08);
+      color: #fffaf2;
+    }
+
+    .brand-box img {
+      display: block;
+      width: 102px;
+      height: auto;
+      max-height: 32px;
+      object-fit: contain;
+    }
+
+    .meids-mark img {
+      width: 34px;
+      height: 34px;
+      padding: 4px;
+      border: 1px solid currentColor;
+      border-radius: 10px;
+      background: #050707;
+    }
+
+    .lang-toggle {
+      display: flex;
+      gap: 6px;
+      padding: 5px;
+      border: 1px solid rgba(17, 21, 20, 0.14);
+      border-radius: 999px;
+      background: rgba(255, 253, 250, 0.72);
+      backdrop-filter: blur(16px);
+    }
+
+    .slide.dark .lang-toggle,
+    .slide.hero .lang-toggle {
+      border-color: rgba(255, 250, 242, 0.20);
+      background: rgba(255, 250, 242, 0.08);
+    }
+
+    .lang-toggle button,
+    .controls button {
+      border: 0;
+      border-radius: 999px;
+      color: inherit;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .lang-toggle button {
+      padding: 8px 12px;
+      background: transparent;
+      color: var(--muted);
+    }
+
+    .slide.dark .lang-toggle button,
+    .slide.hero .lang-toggle button { color: rgba(255, 250, 242, 0.70); }
+
+    .lang-toggle button.active {
+      background: var(--ink);
+      color: #fffaf2;
+    }
+
+    .slide.dark .lang-toggle button.active,
+    .slide.hero .lang-toggle button.active {
+      background: var(--mint);
+      color: var(--ink);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: 8px;
+      margin: 0 0 14px;
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 880;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .slide.dark .eyebrow,
+    .slide.hero .eyebrow { color: var(--mint); }
+
+    h1,
+    h2,
+    h3,
+    p { margin: 0; }
+
+    h1 {
+      max-width: 1040px;
+      font-size: clamp(52px, 7vw, 108px);
+      line-height: 0.93;
+      letter-spacing: -0.055em;
+    }
+
+    h2 {
+      max-width: 1100px;
+      font-size: clamp(40px, 5vw, 78px);
+      line-height: 0.98;
+      letter-spacing: -0.045em;
+    }
+
+    h3 {
+      font-size: 23px;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+    }
+
+    .lead {
+      max-width: 850px;
+      color: color-mix(in srgb, currentColor 72%, transparent);
+      font-size: 23px;
+      line-height: 1.42;
+    }
+
+    .slide.dark .lead,
+    .slide.hero .lead { color: rgba(255, 250, 242, 0.78); }
+
+    .content {
+      display: grid;
+      align-content: center;
+      gap: 28px;
+      min-height: 0;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(340px, 0.72fr);
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .grid-3,
+    .grid-5,
+    .faq-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .grid-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+    .faq-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+
+    .panel,
+    .mini,
+    .faq {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 253, 250, 0.78);
+      box-shadow: var(--shadow);
+    }
+
+    .slide.dark .panel,
+    .slide.dark .mini,
+    .slide.dark .faq,
+    .slide.hero .panel,
+    .slide.hero .mini,
+    .slide.hero .faq {
+      border-color: rgba(255, 250, 242, 0.18);
+      background: rgba(255, 250, 242, 0.08);
+      color: #fffaf2;
+    }
+
+    .panel { padding: 28px; }
+
+    .mini {
+      display: grid;
+      gap: 12px;
+      min-height: 178px;
+      padding: 21px;
+      box-shadow: none;
+    }
+
+    .num {
+      display: inline-grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--ink);
+      color: #fffaf2;
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .slide.dark .num,
+    .slide.hero .num {
+      background: var(--mint);
+      color: var(--ink);
+    }
+
+    .mini p,
+    .faq p,
+    .feature p {
+      color: color-mix(in srgb, currentColor 68%, transparent);
+      font-size: 16px;
+      line-height: 1.42;
+    }
+
+    .rail-map {
+      position: relative;
+      min-height: 430px;
+      overflow: hidden;
+      background:
+        linear-gradient(150deg, rgba(23, 34, 34, 0.94), rgba(23, 34, 34, 0.67)),
+        url("pitch-assets/wascosa-kalikai.png") center / cover;
+      color: #fffaf2;
+    }
+
+    .rail-map::before,
+    .rail-map::after {
+      content: "";
+      position: absolute;
+      left: 10%;
+      right: 10%;
+      height: 4px;
+      border-radius: 999px;
+      background: repeating-linear-gradient(90deg, #fffaf2 0 24px, transparent 24px 44px);
+      opacity: 0.50;
+    }
+
+    .rail-map::before { top: 38%; transform: rotate(-8deg); }
+    .rail-map::after { top: 58%; transform: rotate(7deg); }
+
+    .rail-node {
+      position: absolute;
+      display: grid;
+      gap: 4px;
+      width: 166px;
+      padding: 12px;
+      border: 1px solid rgba(255, 250, 242, 0.24);
+      border-radius: 14px;
+      background: rgba(17, 21, 20, 0.66);
+      backdrop-filter: blur(10px);
+    }
+
+    .rail-node b { color: var(--mint); font-size: 13px; }
+    .rail-node span { color: rgba(255, 250, 242, 0.78); font-size: 12px; line-height: 1.28; }
+    .n1 { top: 16%; left: 8%; }
+    .n2 { top: 28%; right: 7%; }
+    .n3 { bottom: 18%; left: 22%; }
+    .n4 { bottom: 12%; right: 17%; }
+
+    .question {
+      padding: 34px;
+      border-left: 8px solid var(--accent);
+      background: rgba(255, 253, 250, 0.82);
+    }
+
+    .slide.dark .question {
+      border-color: var(--mint);
+      background: rgba(255, 250, 242, 0.08);
+    }
+
+    .question strong {
+      display: block;
+      max-width: 1100px;
+      font-size: clamp(36px, 5.2vw, 74px);
+      line-height: 1.02;
+      letter-spacing: -0.045em;
+    }
+
+    .feature-list { display: grid; gap: 8px; }
+
+    .feature {
+      display: grid;
+      grid-template-columns: 78px 1fr;
+      gap: 18px;
+      align-items: start;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .slide.dark .feature { border-color: rgba(255, 250, 242, 0.16); }
+
+    .feature b {
+      color: var(--accent);
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .slide.dark .feature b { color: var(--mint); }
+
+    .platform {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      padding: 18px;
+      border: 1px solid rgba(255, 250, 242, 0.16);
+      border-radius: 22px;
+      background: rgba(255, 250, 242, 0.06);
+    }
+
+    .layer {
+      display: grid;
+      min-height: 108px;
+      align-content: center;
+      gap: 8px;
+      border: 1px solid rgba(255, 250, 242, 0.16);
+      border-radius: 16px;
+      padding: 18px;
+      background: rgba(149, 228, 201, 0.10);
+      text-align: center;
+    }
+
+    .layer strong { font-size: 18px; }
+    .layer span { color: rgba(255, 250, 242, 0.68); font-size: 13px; line-height: 1.35; }
+
+    .faq { padding: 17px; box-shadow: none; }
+    .faq strong { display: block; margin-bottom: 7px; font-size: 18px; }
+
+    .tagline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tagline span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 34px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 253, 250, 0.62);
+      color: color-mix(in srgb, currentColor 72%, transparent);
+      font-size: 13px;
+      font-weight: 760;
+    }
+
+    .slide.dark .tagline span,
+    .slide.hero .tagline span {
+      border-color: rgba(255, 250, 242, 0.18);
+      background: rgba(255, 250, 242, 0.08);
+      color: rgba(255, 250, 242, 0.82);
+    }
+
+    .footer {
+      color: color-mix(in srgb, currentColor 58%, transparent);
+      font-size: 12px;
+      font-weight: 720;
+      letter-spacing: 0.02em;
+    }
+
+    .eraneos-footer {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: currentColor;
+      opacity: 0.82;
+    }
+
+    .eraneos-footer img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+      opacity: 0.86;
+    }
+
+    .eraneos-footer strong {
+      color: currentColor;
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.01em;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-top: 1px solid rgba(17, 21, 20, 0.10);
+      background: rgba(246, 244, 238, 0.86);
+      padding: 10px 18px;
+      backdrop-filter: blur(18px);
+    }
+
+    .controls button {
+      min-width: 96px;
+      border: 1px solid var(--line);
+      background: var(--card);
+      color: var(--ink);
+      padding: 10px 14px;
+    }
+
+    .progress {
+      flex: 1;
+      height: 7px;
+      border-radius: 999px;
+      background: #e6e2d9;
+      overflow: hidden;
+    }
+
+    .progress span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--accent), var(--mint));
+      transition: width 180ms ease;
+    }
+
+    @media (max-width: 960px) {
+      body { overflow: auto; }
+      .deck, .slides, .slide { display: block; height: auto; min-height: 100vh; }
+      .slide { position: static; display: none; padding: 28px 20px 24px; }
+      .slide.active { display: block; }
+      .split, .grid-3, .grid-5, .faq-grid, .platform { grid-template-columns: 1fr; }
+      h1 { font-size: 48px; }
+      h2 { font-size: 40px; }
+      .lead { font-size: 19px; }
+      .controls { position: sticky; bottom: 0; }
+    }
+
+    @media print {
+      body { overflow: visible; background: white; }
+      .deck, .slides { display: block; height: auto; }
+      .slide { position: relative; display: grid !important; width: 100vw; height: 100vh; page-break-after: always; }
+      .controls, .lang-toggle { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section id="slides" class="slides" aria-live="polite"></section>
+    <nav class="controls" aria-label="Presentation controls">
+      <button type="button" id="prevBtn">Previous</button>
+      <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+      <span id="slideCounter">1 / 12</span>
+      <button type="button" id="nextBtn">Next</button>
+    </nav>
+  </main>
+
+  <script>
+    const assets = {
+      wascosa: "pitch-assets/wascosa-logo.svg",
+      kalikai: "pitch-assets/wascosa-kalikai.png",
+      meids: "pitch-assets/meids-symbol.svg",
+      eraneos: "pitch-assets/eraneos-mark.png",
+    };
+
+    const deck = {
+      en: {
+        prev: "Previous",
+        next: "Next",
+        footerPrefix: "Eraneos · innovation companion for governed AI adoption",
+        slides: [
+          {
+            theme: "hero",
+            eyebrow: "Wascosa Circle Event Hamburg · 27 Aug 2026",
+            title: "Identity at Scale for cargo rail.",
+            lead: "The next leap in rail freight is not only smarter assets. It is scalable expert judgement: available in the moment, grounded in evidence, and governed enough to trust.",
+            tags: ["Tanoos 2.0 rollout context", "K+S Kalikai and global dry bulk flows", "Eraneos as innovation companion", "MeIDs intellectual twin platform"],
+            footer: "Prepared for Wascosa VIP Circle Event",
+          },
+          {
+            eyebrow: "01 · Why this matters now",
+            title: "Cargo rail has an invisible bottleneck: decision capacity.",
+            lead: "Wascosa's event puts the spotlight on modern rolling stock, global commodity flows, and a business session on AI, robotics, start-ups, and the future of logistics. The core question behind all of it: how fast can the ecosystem turn signals into aligned action?",
+            visual: "rail",
+            nodes: [
+              ["Assets", "Wagons, terminals, maintenance, capacity windows"],
+              ["Flows", "Ports, inland corridors, customer promises, disruption"],
+              ["Knowledge", "Operational judgement spread across people and partners"],
+              ["Decisions", "Every delay becomes a compound decision under uncertainty"],
+            ],
+            footer: "From transport capacity to decision capacity",
+          },
+          {
+            theme: "dark",
+            eyebrow: "02 · The problem",
+            title: "Five frictions slow innovation in global freight.",
+            cards: [
+              ["Fragmented data", "Orders, wagons, terminals, maintenance, customer commitments, and disruptions are distributed across systems and formats."],
+              ["Tacit expertise", "Critical judgement sits in expert heads and does not scale naturally across regions, teams, and partners."],
+              ["Coordination drag", "Every exception creates manual alignment loops across operations, commercial teams, and external stakeholders."],
+              ["AI pilot gap", "Many AI pilots look promising, but never cross the bridge into governed, trusted, operational routines."],
+              ["Trust deficit", "High-impact logistics decisions need traceability, approval boundaries, and evidence before AI can assist responsibly."],
+            ],
+            footer: "The bottleneck is not imagination. It is operational trust.",
+          },
+          {
+            eyebrow: "03 · Core question",
+            question: "Can intellectual twins help global transportation systems learn from their best human judgement while staying traceable, governed, and ready for real operations?",
+            lead: "This is not about replacing transport experts. It is about preserving and activating their judgement where decisions are too frequent, too distributed, or too time-critical for classic process work alone.",
+            footer: "The question that links AI to global transportation issues",
+          },
+          {
+            eyebrow: "04 · Eraneos role",
+            title: "Eraneos turns AI ambition into working transformation.",
+            lead: "The value is not another tool demo. It is the translation layer between strategic intent, domain knowledge, data reality, technology choices, governance, and adoption.",
+            features: [
+              ["Frame", "Find the decision domains where AI creates durable value, not just stage effect."],
+              ["Shape", "Capture expertise, data contracts, approval boundaries, and operating routines."],
+              ["Build", "Create local-first MVPs, agent workflows, and integration-ready prototypes."],
+              ["Scale", "Move toward production with auditability, security, operating model, and adoption discipline."],
+            ],
+            footer: "Innovation companion, problem solver, implementation partner",
+          },
+          {
+            theme: "dark",
+            eyebrow: "05 · The MeIDs idea",
+            title: "MeIDs creates intellectual twins: human-shaped AI actors for governed work.",
+            lead: "A twin combines persona, evidence, skills, connectors, and feedback loops. It does not merely answer. It remembers context, respects boundaries, activates approved skills, and improves through review.",
+            layers: [
+              ["Persona", "How a leader thinks, communicates, and escalates."],
+              ["Knowledge", "Evidence-backed documents, transcripts, concepts, and clusters."],
+              ["Skills", "Approved agentic work routines with orchestrators and task agents."],
+              ["Governance", "Human approvals, audit trail, trace review, and decision boundaries."],
+              ["Connectors", "MCP/n8n paths to enterprise tools only when approved."],
+              ["Learning", "Run traces, outcome feedback, and refinement proposals."],
+            ],
+            footer: "MeIDs: co-created with you, to act like you",
+          },
+          {
+            eyebrow: "06 · Three USPs",
+            title: "Three reasons MeIDs is not a chatbot.",
+            cards: [
+              ["Human-shaped operating intelligence", "The twin models the principal's judgement, tone, risk posture, decision style, and escalation habits."],
+              ["Evidence-first trust loop", "Every answer, concept, skill outcome, and refinement can be traced to sources, reviews, and approval states."],
+              ["Skills become operating routines", "Reusable, approved agentic skills turn expertise into repeatable workflows for planning, meetings, customer response, and decisions."],
+            ],
+            footer: "USPs for transport organizations that need speed and trust",
+          },
+          {
+            eyebrow: "07 · Differentiators",
+            title: "Five features that change the consulting offer.",
+            features: [
+              ["01 Persona Modeler", "Creates the actor agent: work context, tone, decision principles, risk posture, boundaries, and stakeholders."],
+              ["02 Knowledge Curator", "Turns documents, transcripts, and source evidence into reviewed concepts, clusters, and retrieval assets."],
+              ["03 Skill Shaping Studio", "Transforms human-defined work into skill specs, orchestrators, task agents, and eval examples."],
+              ["04 Decision Boundary Cockpit", "Makes it visible where the twin may act, where it must ask, and where external execution is blocked."],
+              ["05 Trace and Refinement Loop", "Captures run evidence and feedback before updating instructions, skills, or governance."],
+            ],
+            footer: "From advisory artefact to living capability",
+          },
+          {
+            theme: "dark",
+            eyebrow: "08 · First transport use cases",
+            title: "Start where expert scarcity meets decision pressure.",
+            cards: [
+              ["Executive meeting preparation", "Turn wagon, customer, terminal, and market context into a decision brief with options and risks."],
+              ["Disruption response support", "Retrieve precedent, stakeholder obligations, communication tone, and next best actions."],
+              ["Innovation portfolio steering", "Compare AI, robotics, start-up, and process initiatives by fit, maturity, adoption effort, and ROI."],
+              ["Customer account intelligence", "Capture relationship patterns, commitments, open issues, and commercial sensitivities across teams."],
+              ["Operational knowledge preservation", "Convert expert interviews and after-action reviews into governed knowledge assets and skills."],
+              ["Partner ecosystem activation", "Prepare interface-ready briefs for MCP/n8n workflows and enterprise tools with human gates."],
+            ],
+            footer: "Pilot where the result is visible in weeks, not years",
+          },
+          {
+            eyebrow: "09 · Approach",
+            title: "A pragmatic 90-day path from VIP conversation to working pilot.",
+            cards: [
+              ["1. Frame", "Pick one decision domain where speed, trust, and tacit knowledge matter."],
+              ["2. Shape", "Model the principal, stakeholders, source context, and boundaries."],
+              ["3. Ingest", "Load documents, interviews, transcripts, and operational exports into evidence concepts."],
+              ["4. Skill", "Build one or two skills such as meeting prep, daily steering, or customer brief generation."],
+              ["5. Scale", "Validate outputs, integration readiness, approval gates, and production roadmap."],
+            ],
+            footer: "Outcome: working MVP plus scale decision",
+          },
+          {
+            eyebrow: "10 · FAQ",
+            title: "Challenger questions deserve precise answers.",
+            faqs: [
+              ["Is this just ChatGPT with a nicer interface?", "No. The differentiator is governed identity, evidence storage, skill orchestration, approval gates, and traceable refinement."],
+              ["How do we avoid hallucinations?", "By separating retrieved evidence, confidence, source links, review states, and human approvals before outputs influence operations."],
+              ["Can it act in our systems?", "Yes, but only through approved connector paths such as MCP or n8n, with explicit human gates for external actions."],
+              ["What about data security?", "The MVP can start local-first. Production requires scoped credentials, audit logs, environment separation, and access controls."],
+              ["Who owns the twin's knowledge?", "The organization and the principal define ownership, consent, source scope, retention, and approval rights."],
+              ["Will this replace consultants or operators?", "No. It scales their judgement and preserves expertise so teams can make better decisions faster."],
+              ["How do we measure value?", "Decision cycle time, fewer coordination loops, better meeting readiness, reduced rework, and faster onboarding of expert knowledge."],
+              ["What is the first safe pilot?", "Meeting preparation or daily steering: high value, low external-action risk, clear feedback, and strong source grounding."],
+            ],
+            footer: "FAQ for executive discussion",
+          },
+          {
+            theme: "dark",
+            eyebrow: "11 · Close",
+            title: "The future of transportation will be shaped by organizations that scale their best judgement.",
+            lead: "MeIDs is a governed way to capture, activate, and improve that judgement. Eraneos can accompany Wascosa and its ecosystem from event conversation to a working innovation pilot.",
+            tags: ["Start with one decision domain", "Shape one intellectual twin", "Build one governed skill", "Validate with real transport evidence"],
+            footer: "From conversation to capability",
+          },
+        ],
+      },
+      de: {
+        prev: "Zurueck",
+        next: "Weiter",
+        footerPrefix: "Eraneos · Innovationsbegleiter fuer verantwortungsvolle AI-Adoption",
+        slides: [
+          {
+            theme: "hero",
+            eyebrow: "Wascosa Circle Event Hamburg · 27. August 2026",
+            title: "Identity at Scale fuer den Schienengueterverkehr.",
+            lead: "Der naechste Sprung im Gueterverkehr entsteht nicht nur durch intelligentere Assets. Er entsteht durch skalierbare Expertenurteile: im richtigen Moment verfuegbar, evidenzbasiert und so gesteuert, dass man ihnen vertrauen kann.",
+            tags: ["Tanoos 2.0 Rollout-Kontext", "K+S Kalikai und globale Dry-Bulk-Fluesse", "Eraneos als Innovationsbegleiter", "MeIDs Intellectual Twin Platform"],
+            footer: "Vorbereitet fuer das Wascosa VIP Circle Event",
+          },
+          {
+            eyebrow: "01 · Warum jetzt",
+            title: "Cargo Rail hat einen unsichtbaren Engpass: Entscheidungskapazitaet.",
+            lead: "Das Wascosa Event setzt moderne Gueterwagen, globale Warenfluesse und eine Business Session zu AI, Robotics, Start-ups und Zukunft der Logistik in Szene. Dahinter steht die Kernfrage: Wie schnell kann ein Oekosystem Signale in abgestimmtes Handeln verwandeln?",
+            visual: "rail",
+            nodes: [
+              ["Assets", "Wagen, Terminals, Instandhaltung, Kapazitaetsfenster"],
+              ["Fluesse", "Haefen, Hinterlandkorridore, Kundenversprechen, Stoerungen"],
+              ["Wissen", "Operatives Urteil ist auf Menschen und Partner verteilt"],
+              ["Entscheidungen", "Jede Verzoegerung wird zur Kette von Entscheidungen unter Unsicherheit"],
+            ],
+            footer: "Von Transportkapazitaet zu Entscheidungskapazitaet",
+          },
+          {
+            theme: "dark",
+            eyebrow: "02 · Das Problem",
+            title: "Fuenf Reibungsverluste bremsen Innovation im globalen Freight.",
+            cards: [
+              ["Fragmentierte Daten", "Auftraege, Wagen, Terminals, Instandhaltung, Kundenversprechen und Stoerungen liegen in getrennten Systemen und Formaten."],
+              ["Implizites Expertenwissen", "Kritisches Urteil sitzt in Koepfen und skaliert nicht automatisch ueber Regionen, Teams und Partner."],
+              ["Koordinationsaufwand", "Jede Ausnahme erzeugt Abstimmungsschleifen zwischen Betrieb, Vertrieb und externen Stakeholdern."],
+              ["AI-Pilot-Luecke", "Viele AI-Piloten sehen gut aus, schaffen aber nicht den Sprung in gepruefte operative Routinen."],
+              ["Vertrauensluecke", "Logistikentscheidungen mit Wirkung brauchen Nachvollziehbarkeit, Freigabegrenzen und Evidenz."],
+            ],
+            footer: "Der Engpass ist nicht Fantasie. Der Engpass ist operatives Vertrauen.",
+          },
+          {
+            eyebrow: "03 · Kernfrage",
+            question: "Koennen Intellectual Twins globale Transportsysteme vom besten menschlichen Urteil lernen lassen und gleichzeitig nachvollziehbar, gesteuert und operationsfaehig bleiben?",
+            lead: "Es geht nicht darum, Transportexpertinnen und -experten zu ersetzen. Es geht darum, ihr Urteil dort zu bewahren und wirksam zu machen, wo Entscheidungen zu haeufig, zu verteilt oder zu zeitkritisch fuer klassische Prozessarbeit allein sind.",
+            footer: "Die Bruecke zwischen AI und globalen Transportproblemen",
+          },
+          {
+            eyebrow: "04 · Rolle von Eraneos",
+            title: "Eraneos uebersetzt AI-Ambition in wirksame Transformation.",
+            lead: "Der Wert liegt nicht in einer weiteren Tool-Demo. Der Wert liegt in der Uebersetzung zwischen Strategie, Fachwissen, Datenrealitaet, Technologieentscheidungen, Governance und Adoption.",
+            features: [
+              ["Frame", "Entscheidungsfelder identifizieren, in denen AI nachhaltigen Wert schafft und nicht nur gut aussieht."],
+              ["Shape", "Expertise, Datenvertraege, Freigabegrenzen und operative Routinen erfassen."],
+              ["Build", "Local-first MVPs, Agent Workflows und integrationsfaehige Prototypen bauen."],
+              ["Scale", "Mit Auditierbarkeit, Sicherheit, Operating Model und Adoption in Richtung Produktion skalieren."],
+            ],
+            footer: "Innovationsbegleiter, Problemloeser, Umsetzungspartner",
+          },
+          {
+            theme: "dark",
+            eyebrow: "05 · Die MeIDs Idee",
+            title: "MeIDs schafft Intellectual Twins: menschlich gepraegte AI-Akteure fuer gesteuerte Arbeit.",
+            lead: "Ein Twin verbindet Persona, Evidenz, Skills, Connectoren und Feedback-Loops. Er antwortet nicht nur. Er erinnert Kontext, respektiert Grenzen, aktiviert freigegebene Skills und verbessert sich durch Review.",
+            layers: [
+              ["Persona", "Wie eine Person denkt, kommuniziert und eskaliert."],
+              ["Wissen", "Evidenzbasierte Dokumente, Transkripte, Konzepte und Cluster."],
+              ["Skills", "Freigegebene agentische Arbeitsroutinen mit Orchestratoren und Task Agents."],
+              ["Governance", "Human Approvals, Audit Trail, Trace Review und Entscheidungsgrenzen."],
+              ["Connectoren", "MCP/n8n Pfade zu Enterprise Tools nur nach Freigabe."],
+              ["Lernen", "Run Traces, Outcome Feedback und Refinement Proposals."],
+            ],
+            footer: "MeIDs: co-created with you, to act like you",
+          },
+          {
+            eyebrow: "06 · Drei USPs",
+            title: "Drei Gruende, warum MeIDs kein Chatbot ist.",
+            cards: [
+              ["Menschlich gepraegte Operating Intelligence", "Der Twin modelliert Urteil, Tonalitaet, Risikohaltung, Entscheidungsstil und Eskalationsmuster."],
+              ["Evidence-first Trust Loop", "Jede Antwort, jedes Konzept, jedes Skill-Ergebnis und jede Verbesserung ist auf Quellen, Reviews und Freigaben rueckfuehrbar."],
+              ["Skills werden operative Routinen", "Wiederverwendbare, freigegebene agentische Skills machen Expertise zu wiederholbaren Workflows fuer Planung, Meetings, Kundenreaktionen und Entscheidungen."],
+            ],
+            footer: "USPs fuer Transportorganisationen, die Geschwindigkeit und Vertrauen brauchen",
+          },
+          {
+            eyebrow: "07 · Differenzierung",
+            title: "Fuenf Features, die das Consulting-Angebot veraendern.",
+            features: [
+              ["01 Persona Modeler", "Erstellt den Actor Agent: Arbeitskontext, Tonalitaet, Entscheidungsprinzipien, Risikohaltung, Grenzen und Stakeholder."],
+              ["02 Knowledge Curator", "Macht aus Dokumenten, Transkripten und Quellen gepruefte Konzepte, Cluster und Retrieval Assets."],
+              ["03 Skill Shaping Studio", "Uebersetzt menschlich definierte Arbeit in Skill Specs, Orchestratoren, Task Agents und Eval-Beispiele."],
+              ["04 Decision Boundary Cockpit", "Zeigt, wo der Twin handeln darf, wo er fragen muss und wo externe Ausfuehrung blockiert bleibt."],
+              ["05 Trace and Refinement Loop", "Sammelt Run Evidence und Feedback, bevor Instructions, Skills oder Governance veraendert werden."],
+            ],
+            footer: "Vom Beratungsartefakt zur lebenden Faehigkeit",
+          },
+          {
+            theme: "dark",
+            eyebrow: "08 · Erste Transport Use Cases",
+            title: "Startpunkt ist dort, wo Expertenknappheit auf Entscheidungsdruck trifft.",
+            cards: [
+              ["Executive Meeting Preparation", "Wagen-, Kunden-, Terminal- und Marktkontext zu einem Decision Brief mit Optionen und Risiken verdichten."],
+              ["Disruption Response Support", "Praezedenzfaelle, Stakeholder-Pflichten, Kommunikationstonalitaet und naechste Aktionen abrufen."],
+              ["Innovation Portfolio Steering", "AI-, Robotics-, Start-up- und Prozessinitiativen nach Fit, Reifegrad, Adoption Effort und ROI vergleichen."],
+              ["Customer Account Intelligence", "Beziehungsmuster, Zusagen, offene Themen und kommerzielle Sensitivitaeten teamuebergreifend erfassen."],
+              ["Operational Knowledge Preservation", "Experteninterviews und After-Action Reviews in gesteuerte Wissensassets und Skills verwandeln."],
+              ["Partner Ecosystem Activation", "Interface-faehige Briefings fuer MCP/n8n Workflows und Enterprise Tools mit Human Gates vorbereiten."],
+            ],
+            footer: "Pilotieren, wo Wirkung in Wochen sichtbar wird",
+          },
+          {
+            eyebrow: "09 · Vorgehen",
+            title: "Ein pragmatischer 90-Tage-Pfad vom VIP-Gespraech zum Working Pilot.",
+            cards: [
+              ["1. Frame", "Ein Entscheidungsfeld waehlen, in dem Geschwindigkeit, Vertrauen und implizites Wissen zaehlen."],
+              ["2. Shape", "Principal, Stakeholder, Quellenkontext und Grenzen modellieren."],
+              ["3. Ingest", "Dokumente, Interviews, Transkripte und operative Exporte in Evidenzkonzepte ueberfuehren."],
+              ["4. Skill", "Ein bis zwei Skills bauen, z.B. Meeting Prep, Daily Steering oder Customer Brief."],
+              ["5. Scale", "Outputs, Integrationsreife, Freigabegrenzen und Production Roadmap validieren."],
+            ],
+            footer: "Outcome: Working MVP plus Skalierungsentscheidung",
+          },
+          {
+            eyebrow: "10 · FAQ",
+            title: "Kritische Fragen brauchen klare Antworten.",
+            faqs: [
+              ["Ist das nur ChatGPT mit schoenerer Oberflaeche?", "Nein. Die Differenzierung liegt in gesteuerter Identitaet, Evidenzspeicher, Skill-Orchestrierung, Freigabegrenzen und nachvollziehbarer Verbesserung."],
+              ["Wie vermeiden wir Halluzinationen?", "Durch Trennung von Evidenz, Confidence, Quellen, Review States und Human Approvals, bevor Outputs operative Wirkung bekommen."],
+              ["Kann der Twin in unseren Systemen handeln?", "Ja, aber nur ueber freigegebene Connector-Pfade wie MCP oder n8n und mit expliziten Human Gates fuer externe Aktionen."],
+              ["Was ist mit Datensicherheit?", "Der MVP kann local-first starten. Produktion braucht Scoped Credentials, Audit Logs, Environment Separation und Access Controls."],
+              ["Wem gehoert das Wissen des Twins?", "Organisation und Principal definieren Ownership, Consent, Quellumfang, Aufbewahrung und Freigaberechte."],
+              ["Ersetzt das Consultants oder Operator?", "Nein. Es skaliert ihr Urteil und bewahrt Expertise, damit Teams schneller bessere Entscheidungen treffen."],
+              ["Wie messen wir Wert?", "Decision Cycle Time, weniger Abstimmungsschleifen, bessere Meeting Readiness, weniger Rework und schnelleres Onboarding von Expertenwissen."],
+              ["Was ist der erste sichere Pilot?", "Meeting Preparation oder Daily Steering: hoher Wert, geringes externes Aktionsrisiko, klares Feedback und starke Quellengrundung."],
+            ],
+            footer: "FAQ fuer die Executive Diskussion",
+          },
+          {
+            theme: "dark",
+            eyebrow: "11 · Schlussbild",
+            title: "Die Zukunft des Transports gestalten Organisationen, die ihr bestes Urteil skalieren.",
+            lead: "MeIDs ist ein gesteuerter Weg, dieses Urteil zu erfassen, zu aktivieren und kontinuierlich zu verbessern. Eraneos kann Wascosa und das Oekosystem vom Event-Impuls bis zum wirksamen Innovationspiloten begleiten.",
+            tags: ["Mit einem Entscheidungsfeld starten", "Einen Intellectual Twin formen", "Einen gesteuerten Skill bauen", "Mit realer Transport-Evidenz validieren"],
+            footer: "Vom Gespraech zur Faehigkeit",
+          },
+        ],
+      },
+    };
+
+    const slidesRoot = document.getElementById("slides");
+    const counter = document.getElementById("slideCounter");
+    const progress = document.getElementById("progressBar");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    let lang = localStorage.getItem("wascosaDeck.lang") || "de";
+    let index = 0;
+    let slides = [];
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function renderTopbar(slide, slideIndex) {
+      return `
+        <header class="topbar">
+          <div class="brand-row">
+            ${slideIndex === 0 || slideIndex === deck[lang].slides.length - 1 ? `<div class="brand-box"><img src="${assets.wascosa}" alt="Wascosa logo"></div>` : ""}
+            ${slide.theme === "hero" || slide.theme === "dark" ? `<div class="brand-box meids-mark"><img src="${assets.meids}" alt="MeIDs symbol"><strong>MeIDs</strong></div>` : ""}
+          </div>
+          <div class="lang-toggle" aria-label="Language">
+            <button type="button" data-lang="de" class="${lang === "de" ? "active" : ""}">DE</button>
+            <button type="button" data-lang="en" class="${lang === "en" ? "active" : ""}">EN</button>
+          </div>
+        </header>
+      `;
+    }
+
+    function renderCards(items = [], gridClass = "grid-3") {
+      return `<div class="${gridClass}">${items.map((item, itemIndex) => `
+        <div class="mini">
+          <span class="num">${itemIndex + 1}</span>
+          <h3>${escapeHtml(item[0])}</h3>
+          <p>${escapeHtml(item[1])}</p>
+        </div>
+      `).join("")}</div>`;
+    }
+
+    function renderFeatures(items = []) {
+      return `<div class="feature-list panel">${items.map((item) => `
+        <div class="feature">
+          <b>${escapeHtml(item[0])}</b>
+          <div><p>${escapeHtml(item[1])}</p></div>
+        </div>
+      `).join("")}</div>`;
+    }
+
+    function renderRail(slide) {
+      const nodes = slide.nodes || [];
+      return `<div class="panel rail-map">${nodes.map((node, nodeIndex) => `
+        <div class="rail-node n${nodeIndex + 1}"><b>${escapeHtml(node[0])}</b><span>${escapeHtml(node[1])}</span></div>
+      `).join("")}</div>`;
+    }
+
+    function renderLayers(items = []) {
+      return `<div class="platform">${items.map((item) => `
+        <div class="layer"><strong>${escapeHtml(item[0])}</strong><span>${escapeHtml(item[1])}</span></div>
+      `).join("")}</div>`;
+    }
+
+    function renderFaq(items = []) {
+      return `<div class="faq-grid">${items.map((item) => `
+        <div class="faq"><strong>${escapeHtml(item[0])}</strong><p>${escapeHtml(item[1])}</p></div>
+      `).join("")}</div>`;
+    }
+
+    function renderBody(slide) {
+      if (slide.question) {
+        return `
+          <div class="question panel"><strong>${escapeHtml(slide.question)}</strong></div>
+          ${slide.lead ? `<p class="lead">${escapeHtml(slide.lead)}</p>` : ""}
+        `;
+      }
+      if (slide.visual === "rail") {
+        return `
+          <div class="split">
+            <div><h2>${escapeHtml(slide.title)}</h2>${slide.lead ? `<p class="lead" style="margin-top:24px">${escapeHtml(slide.lead)}</p>` : ""}</div>
+            ${renderRail(slide)}
+          </div>
+        `;
+      }
+      if (slide.layers) {
+        return `<h2>${escapeHtml(slide.title)}</h2>${slide.lead ? `<p class="lead">${escapeHtml(slide.lead)}</p>` : ""}${renderLayers(slide.layers)}`;
+      }
+      if (slide.features) {
+        return `<div class="split"><div><h2>${escapeHtml(slide.title)}</h2>${slide.lead ? `<p class="lead" style="margin-top:24px">${escapeHtml(slide.lead)}</p>` : ""}</div>${renderFeatures(slide.features)}</div>`;
+      }
+      if (slide.faqs) {
+        return `<h2>${escapeHtml(slide.title)}</h2>${renderFaq(slide.faqs)}`;
+      }
+      if (slide.cards) {
+        const grid = slide.cards.length >= 5 ? "grid-5" : "grid-3";
+        return `<h2>${escapeHtml(slide.title)}</h2>${slide.lead ? `<p class="lead">${escapeHtml(slide.lead)}</p>` : ""}${renderCards(slide.cards, grid)}`;
+      }
+      return `
+        <div>
+          <h1>${escapeHtml(slide.title)}</h1>
+          ${slide.lead ? `<p class="lead" style="margin-top:24px">${escapeHtml(slide.lead)}</p>` : ""}
+        </div>
+        ${slide.tags ? `<div class="tagline">${slide.tags.map((tag) => `<span>${escapeHtml(tag)}</span>`).join("")}</div>` : ""}
+      `;
+    }
+
+    function renderFooter(slide, slideIndex) {
+      return `
+        <footer class="footer">
+          <span class="eraneos-footer"><img src="${assets.eraneos}" alt="Eraneos mark"><strong>eraneos</strong><span>${escapeHtml(deck[lang].footerPrefix)}</span></span>
+          <span>${escapeHtml(slide.footer || "")} · ${slideIndex + 1} / ${deck[lang].slides.length}</span>
+        </footer>
+      `;
+    }
+
+    function renderDeck() {
+      const current = deck[lang];
+      document.documentElement.lang = lang;
+      prevBtn.textContent = current.prev;
+      nextBtn.textContent = current.next;
+      slidesRoot.innerHTML = current.slides.map((slide, slideIndex) => `
+        <article class="slide ${escapeHtml(slide.theme || "")} ${slideIndex === index ? "active" : ""}">
+          ${renderTopbar(slide, slideIndex)}
+          <div class="content">
+            <span class="eyebrow">${escapeHtml(slide.eyebrow)}</span>
+            ${renderBody(slide)}
+          </div>
+          ${renderFooter(slide, slideIndex)}
+        </article>
+      `).join("");
+      slides = Array.from(document.querySelectorAll(".slide"));
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.addEventListener("click", () => {
+          lang = button.dataset.lang;
+          localStorage.setItem("wascosaDeck.lang", lang);
+          renderDeck();
+          showSlide(index);
+        });
+      });
+      showSlide(index);
+    }
+
+    function showSlide(nextIndex) {
+      index = Math.max(0, Math.min(slides.length - 1, nextIndex));
+      slides.forEach((slide, slideIndex) => slide.classList.toggle("active", slideIndex === index));
+      counter.textContent = `${index + 1} / ${slides.length}`;
+      progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+      history.replaceState(null, "", `#${index + 1}`);
+    }
+
+    prevBtn.addEventListener("click", () => showSlide(index - 1));
+    nextBtn.addEventListener("click", () => showSlide(index + 1));
+    document.addEventListener("keydown", (event) => {
+      if (event.target && ["INPUT", "TEXTAREA", "SELECT", "BUTTON"].includes(event.target.tagName)) return;
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") showSlide(index + 1);
+      if (event.key === "ArrowLeft" || event.key === "PageUp") showSlide(index - 1);
+      if (event.key === "Home") showSlide(0);
+      if (event.key === "End") showSlide(slides.length - 1);
+    });
+
+    const hashIndex = Number.parseInt(window.location.hash.replace("#", ""), 10);
+    index = Number.isFinite(hashIndex) ? hashIndex - 1 : 0;
+    renderDeck();
+  </script>
+</body>
+</html>
