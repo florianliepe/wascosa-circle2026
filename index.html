@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MeIDs x Wascosa Circle Event Hamburg 2026</title>
+  <title>Intellectual Twin x Wascosa Circle Event Hamburg 2026</title>
   <style>
     :root {
       --ink: #111514;
@@ -52,8 +52,8 @@
       gap: 24px;
       padding: 44px 58px 30px;
       background:
-        linear-gradient(120deg, rgba(255, 90, 31, 0.08), transparent 34%),
-        radial-gradient(circle at 86% 12%, rgba(149, 228, 201, 0.25), transparent 25%),
+        linear-gradient(120deg, rgba(255, 90, 31, 0.05), transparent 36%),
+        linear-gradient(180deg, rgba(255, 253, 250, 0.78), rgba(246, 244, 238, 0.94)),
         var(--paper);
     }
 
@@ -197,22 +197,22 @@
 
     h1 {
       max-width: 1040px;
-      font-size: clamp(52px, 7vw, 108px);
+      font-size: clamp(58px, 7vw, 104px);
       line-height: 0.93;
-      letter-spacing: -0.055em;
+      letter-spacing: 0;
     }
 
     h2 {
       max-width: 1100px;
-      font-size: clamp(40px, 5vw, 78px);
+      font-size: clamp(42px, 5vw, 74px);
       line-height: 0.98;
-      letter-spacing: -0.045em;
+      letter-spacing: 0;
     }
 
     h3 {
       font-size: 23px;
       line-height: 1.12;
-      letter-spacing: -0.02em;
+      letter-spacing: 0;
     }
 
     .lead {
@@ -254,7 +254,7 @@
     .mini,
     .faq {
       border: 1px solid var(--line);
-      border-radius: 18px;
+      border-radius: 12px;
       background: rgba(255, 253, 250, 0.78);
       box-shadow: var(--shadow);
     }
@@ -276,7 +276,7 @@
       display: grid;
       gap: 12px;
       min-height: 178px;
-      padding: 21px;
+      padding: 24px;
       box-shadow: none;
     }
 
@@ -364,9 +364,9 @@
     .question strong {
       display: block;
       max-width: 1100px;
-      font-size: clamp(36px, 5.2vw, 74px);
+      font-size: clamp(38px, 5.2vw, 72px);
       line-height: 1.02;
-      letter-spacing: -0.045em;
+      letter-spacing: 0;
     }
 
     .feature-list { display: grid; gap: 8px; }
@@ -847,6 +847,280 @@
         ],
       },
     };
+
+    const refinedDeck = {
+      en: {
+        prev: "Previous",
+        next: "Next",
+        footerPrefix: "Eraneos - innovation companion for governed AI adoption",
+        slides: [
+          {
+            theme: "hero",
+            eyebrow: "Wascosa Circle Event Hamburg - 27 Aug 2026",
+            title: "Keep the expert in the room.",
+            lead: "Rail freight is modernising its assets. The next bottleneck is harder: preserving the judgement of the people who know how to keep freight moving.",
+            tags: ["Tanoos 2.0 rollout context", "K+S Kalikai and dry-bulk flows", "AI, robotics and start-up business session", "Intellectual Twin by Eraneos"],
+            footer: "Prepared for Wascosa VIP Circle Event",
+          },
+          {
+            eyebrow: "01 - The rail-freight squeeze",
+            title: "The work is getting harder while expertise is walking out.",
+            cards: [
+              ["16.4% modal share", "Rail freight is not yet gaining the share Europe needs. The system must improve performance while under cost and capacity pressure."],
+              ["50% retirement risk", "Industry sources warn that roughly half of operational rail employees may retire by 2030. The loss is judgement, not only headcount."],
+              ["500k wagons to change", "DAC, telematics, ERTMS, cybersecurity and AI add new competencies exactly as experienced people leave."],
+            ],
+            footer: "From workforce shortage to judgement shortage",
+          },
+          {
+            theme: "dark",
+            eyebrow: "02 - Stage hook",
+            question: "When your most irreplaceable expert retires, what exactly are you allowed to keep - and what walks out the door forever?",
+            lead: "We know how to keep wagons in service for decades. We still treat expert judgement as something that disappears at retirement, vacation, overload, or a missed handover.",
+            footer: "The strategic question for industrial AI",
+          },
+          {
+            eyebrow: "03 - Why classic transfer fails",
+            title: "The knowledge that matters is rarely written down.",
+            visual: "rail",
+            nodes: [
+              ["Signal", "A noise, corrosion pattern, contract nuance, terminal constraint, or customer history"],
+              ["Judgement", "The expert recognises the exception and knows which rule should bend"],
+              ["Decision", "A sequence, escalation, maintenance call, or customer message is chosen"],
+              ["Trace", "The reason often remains implicit, so the organisation cannot reuse it"],
+            ],
+            lead: "Documents store facts. Experts carry exception logic: the why, the trade-off, the corridor-specific memory, and the responsible escalation.",
+            footer: "The asset is not only data. The asset is expert reasoning.",
+          },
+          {
+            eyebrow: "04 - What Eraneos brings",
+            title: "Eraneos turns AI into governed operational capability.",
+            features: [
+              ["Frame", "Select a decision domain where expertise loss creates operational, commercial, or safety risk."],
+              ["Capture", "Elicit judgement from experts through interviews, documents, transcripts, and real decision examples."],
+              ["Build", "Create a local-first intellectual twin with evidence, skill workflows, approval gates, and audit trail."],
+              ["Scale", "Connect to enterprise systems only when governance, security, and adoption routines are ready."],
+            ],
+            footer: "Innovation companion, problem solver, implementation partner",
+          },
+          {
+            theme: "dark",
+            eyebrow: "05 - The solution",
+            title: "An Intellectual Twin is not a chatbot. It is preserved judgement with controls.",
+            lead: "It combines one expert's reasoning model, reviewed source evidence, approved skills, and traceable decision boundaries. It answers only with context; it acts only with permission.",
+            layers: [
+              ["Expert Persona", "How this person reasons, communicates, escalates, and accepts risk."],
+              ["Evidence Base", "Documents, transcripts, examples, decision logs, and source links."],
+              ["Skill Routines", "Reusable agent workflows for briefs, meeting prep, planning, and review."],
+              ["Governance", "Human approvals, confidence, trace review, data ownership, and audit log."],
+              ["Connectors", "MCP or n8n integration paths to enterprise tools after approval."],
+              ["Feedback Loop", "Outcome signals refine the twin through reviewed proposals, not silent drift."],
+            ],
+            footer: "Working name MeIDs - co-created with you, to act like you",
+          },
+          {
+            eyebrow: "06 - Defensible difference",
+            title: "Three discriminators industrial buyers can test.",
+            cards: [
+              ["Cloned, not averaged", "The twin reflects one named expert's judgement, including the non-average call that a generic model would smooth away."],
+              ["Judgement with a paper trail", "Every recommendation exposes sources, assumptions, confidence, decision boundaries, and human approval needs."],
+              ["Continuity that compounds", "The expert stays available to new teams after retirement, shift handover, or overload - and the organisation keeps learning."],
+            ],
+            footer: "Not generic AI. Not knowledge management. Governed expert continuity.",
+          },
+          {
+            theme: "dark",
+            eyebrow: "07 - Wascosa-relevant pilot",
+            title: "Start with one expert whose judgement protects service continuity.",
+            cards: [
+              ["ECM / maintenance authority", "Capture exception logic for corrosion, service patterns, workshop constraints, and wagon availability."],
+              ["RID / dangerous-goods expert", "Preserve decision paths for compliance-sensitive questions where wrong confidence is costly."],
+              ["DAC migration lead", "Model sequencing trade-offs across fleet retrofit, customer contracts, workshop capacity, and corridor readiness."],
+            ],
+            footer: "A safe pilot is narrow, high-value, and reviewable",
+          },
+          {
+            eyebrow: "08 - Example output",
+            title: "A twin turns scattered context into a decision brief.",
+            features: [
+              ["Input", "Calendar blocker, wagon context, customer notes, maintenance history, prior decisions, and meeting objective."],
+              ["Synthesis", "What changed, where risk sits, what the expert would check first, and which decision options are realistic."],
+              ["Output", "Executive summary, open decisions, recommended next actions, owner, confidence, and evidence links."],
+              ["Boundary", "The twin may draft the brief. It must ask before sending messages, committing dates, or triggering meetings."],
+            ],
+            footer: "From meeting preparation to operational decision support",
+          },
+          {
+            eyebrow: "09 - Governance first",
+            title: "In rail, an untraceable answer is a liability.",
+            faqs: [
+              ["How do we reduce hallucination risk?", "By grounding every answer in reviewed sources, confidence scores, and explicit unsupported-claim handling."],
+              ["Who owns the twin?", "Ownership, consent, retention, source scope, and offboarding rights are defined contractually before capture starts."],
+              ["Can it act in systems?", "Only through approved MCP or n8n connectors, with human gates for external actions and high-risk decisions."],
+              ["How is quality improved?", "Run traces, human feedback, and outcome signals create refinement proposals that are reviewed before becoming a new version."],
+            ],
+            footer: "Governance belongs in the main story, not the appendix",
+          },
+          {
+            theme: "dark",
+            eyebrow: "10 - 90-day path",
+            title: "From event conversation to working pilot in one quarter.",
+            cards: [
+              ["1. Choose", "Select one critical expert and one decision domain with measurable continuity risk."],
+              ["2. Capture", "Run structured elicitation, source upload, transcript capture, and decision-example collection."],
+              ["3. Build", "Create the twin, evidence base, first skill, review dashboard, and approval boundaries."],
+              ["4. Validate", "Test against real scenarios, compare expert vs. twin output, measure cycle time and rework."],
+              ["5. Decide", "Approve scale-up, expand the domain, or retire the pilot with learnings."],
+            ],
+            footer: "Outcome: working MVP plus scale decision",
+          },
+          {
+            eyebrow: "11 - The ask",
+            title: "Pick one expert before the knowledge leaves the building.",
+            lead: "The right first pilot is not a broad AI transformation. It is one high-value expert, one bounded decision domain, one governed twin, and a measurable answer to whether judgement can be retained responsibly.",
+            tags: ["Name the expert", "Choose the decision domain", "Define human approval gates", "Validate with real rail evidence"],
+            footer: "From conversation to capability",
+          },
+        ],
+      },
+      de: {
+        prev: "Zurueck",
+        next: "Weiter",
+        footerPrefix: "Eraneos - Innovationsbegleiter fuer verantwortungsvolle AI-Adoption",
+        slides: [
+          {
+            theme: "hero",
+            eyebrow: "Wascosa Circle Event Hamburg - 27. August 2026",
+            title: "Das Expertenurteil bleibt im Raum.",
+            lead: "Der Schienengueterverkehr modernisiert seine Assets. Der naechste Engpass ist schwerer zu loesen: das Urteil der Menschen zu bewahren, die wissen, wie Fracht wirklich in Bewegung bleibt.",
+            tags: ["Tanoos 2.0 Rollout-Kontext", "K+S Kalikai und Dry-Bulk-Fluesse", "Business Session zu AI, Robotics und Start-ups", "Intellectual Twin by Eraneos"],
+            footer: "Vorbereitet fuer das Wascosa VIP Circle Event",
+          },
+          {
+            eyebrow: "01 - Der Rail-Freight-Squeeze",
+            title: "Die Arbeit wird komplexer, waehrend Expertise das System verlaesst.",
+            cards: [
+              ["16.4% Modal Share", "Rail Freight gewinnt noch nicht den Anteil, den Europa braucht. Das System muss Leistung steigern, waehrend Kosten- und Kapazitaetsdruck wachsen."],
+              ["50% Ruhestandsrisiko", "Branchenquellen warnen, dass bis 2030 rund die Haelfte der operativen Rail-Mitarbeitenden in Rente gehen koennte. Verloren geht Urteil, nicht nur Headcount."],
+              ["500k Wagen im Wandel", "DAC, Telematik, ERTMS, Cybersecurity und AI verlangen neue Kompetenzen genau dann, wenn erfahrene Menschen gehen."],
+            ],
+            footer: "Aus Fachkraeftemangel wird Urteilsmangel",
+          },
+          {
+            theme: "dark",
+            eyebrow: "02 - Stage Hook",
+            question: "Wenn Ihr unersetzlichster Experte in Rente geht: Was duerfen Sie behalten - und was verlaesst das Unternehmen fuer immer?",
+            lead: "Wir wissen, wie man Gueterwagen ueber Jahrzehnte im Einsatz haelt. Expertenurteil behandeln wir noch immer so, als duerfte es bei Rente, Urlaub, Ueberlastung oder fehlender Uebergabe verschwinden.",
+            footer: "Die strategische Frage fuer industrielle AI",
+          },
+          {
+            eyebrow: "03 - Warum klassischer Wissenstransfer scheitert",
+            title: "Das entscheidende Wissen steht selten im Handbuch.",
+            visual: "rail",
+            nodes: [
+              ["Signal", "Ein Geraeusch, Korrosionsmuster, Vertragsdetail, Terminal-Engpass oder Kundenkontext"],
+              ["Urteil", "Der Experte erkennt die Ausnahme und weiss, welche Regel sich biegen darf"],
+              ["Entscheidung", "Eine Sequenz, Eskalation, Instandhaltungsentscheidung oder Kundenbotschaft entsteht"],
+              ["Spur", "Die Begruendung bleibt oft implizit - und kann deshalb nicht wiederverwendet werden"],
+            ],
+            lead: "Dokumente speichern Fakten. Experten tragen Ausnahme-Logik: das Warum, den Trade-off, die Korridor-Erfahrung und die verantwortliche Eskalation.",
+            footer: "Das Asset ist nicht nur Daten. Das Asset ist Expertenlogik.",
+          },
+          {
+            eyebrow: "04 - Was Eraneos einbringt",
+            title: "Eraneos macht aus AI eine gesteuerte operative Faehigkeit.",
+            features: [
+              ["Frame", "Ein Entscheidungsfeld waehlen, in dem Wissensverlust operative, kommerzielle oder sicherheitsnahe Risiken erzeugt."],
+              ["Capture", "Expertenurteil durch Interviews, Dokumente, Transkripte und echte Entscheidungsbeispiele erfassen."],
+              ["Build", "Einen local-first Intellectual Twin mit Evidenz, Skill Workflows, Freigabegrenzen und Audit Trail bauen."],
+              ["Scale", "Erst dann an Enterprise-Systeme anbinden, wenn Governance, Security und Adoption-Routinen stehen."],
+            ],
+            footer: "Innovationsbegleiter, Problemloeser, Umsetzungspartner",
+          },
+          {
+            theme: "dark",
+            eyebrow: "05 - Die Loesung",
+            title: "Ein Intellectual Twin ist kein Chatbot. Er ist bewahrtes Urteil mit Kontrolle.",
+            lead: "Er verbindet das Denkmodell einer Person, gepruefte Evidenz, freigegebene Skills und nachvollziehbare Entscheidungsgrenzen. Er antwortet nur mit Kontext; er handelt nur mit Freigabe.",
+            layers: [
+              ["Experten-Persona", "Wie diese Person denkt, kommuniziert, eskaliert und Risiko bewertet."],
+              ["Evidenzbasis", "Dokumente, Transkripte, Beispiele, Decision Logs und Quellenlinks."],
+              ["Skill Routinen", "Wiederverwendbare Agent Workflows fuer Briefings, Meeting Prep, Planung und Review."],
+              ["Governance", "Human Approvals, Confidence, Trace Review, Data Ownership und Audit Log."],
+              ["Connectoren", "MCP- oder n8n-Integrationspfade zu Enterprise Tools nach Freigabe."],
+              ["Feedback Loop", "Outcome-Signale verbessern den Twin ueber gepruefte Vorschlaege, nicht durch stilles Drift."],
+            ],
+            footer: "Working name MeIDs - co-created with you, to act like you",
+          },
+          {
+            eyebrow: "06 - Der belastbare Unterschied",
+            title: "Drei Differenzierungsmerkmale, die industrielle Kaeufer testen koennen.",
+            cards: [
+              ["Cloned, not averaged", "Der Twin spiegelt das Urteil eines benannten Experten - inklusive der nicht-durchschnittlichen Entscheidung, die ein generisches Modell glaetten wuerde."],
+              ["Judgement with a paper trail", "Jede Empfehlung zeigt Quellen, Annahmen, Confidence, Entscheidungsgrenzen und Freigabebedarf."],
+              ["Continuity that compounds", "Der Experte bleibt fuer neue Teams verfuegbar - nach Rente, Schichtwechsel oder Ueberlastung - und die Organisation lernt weiter."],
+            ],
+            footer: "Nicht generische AI. Nicht Knowledge Management. Gesteuerte Expertenkontinuitaet.",
+          },
+          {
+            theme: "dark",
+            eyebrow: "07 - Wascosa-relevanter Pilot",
+            title: "Starten Sie mit einem Experten, dessen Urteil Service Continuity schuetzt.",
+            cards: [
+              ["ECM / Maintenance Authority", "Ausnahme-Logik zu Korrosion, Einsatzmustern, Werkstattrestriktionen und Wagenverfuegbarkeit erfassen."],
+              ["RID / Dangerous Goods Expert", "Entscheidungswege fuer compliance-sensitive Fragen bewahren, bei denen falsche Sicherheit teuer wird."],
+              ["DAC Migration Lead", "Sequenzierungs-Trade-offs ueber Flotten-Umruestung, Kundenvertraege, Werkstattkapazitaet und Korridorreife modellieren."],
+            ],
+            footer: "Ein sicherer Pilot ist eng, wertvoll und reviewbar",
+          },
+          {
+            eyebrow: "08 - Beispieloutput",
+            title: "Ein Twin macht aus verstreutem Kontext ein Decision Brief.",
+            features: [
+              ["Input", "Kalendereintrag, Wagenkontext, Kundennotizen, Maintenance History, fruehere Entscheidungen und Meeting-Ziel."],
+              ["Synthese", "Was sich veraendert hat, wo Risiko liegt, was der Experte zuerst pruefen wuerde und welche Optionen realistisch sind."],
+              ["Output", "Executive Summary, offene Entscheidungen, empfohlene Next Actions, Owner, Confidence und Quellenlinks."],
+              ["Grenze", "Der Twin darf das Briefing entwerfen. Er muss fragen, bevor Nachrichten gesendet, Termine zugesagt oder Meetings ausgeloest werden."],
+            ],
+            footer: "Von Meeting Prep zu operativem Decision Support",
+          },
+          {
+            eyebrow: "09 - Governance zuerst",
+            title: "In Rail ist eine nicht nachvollziehbare Antwort ein Risiko.",
+            faqs: [
+              ["Wie reduzieren wir Halluzinationen?", "Durch gepruefte Quellen, Confidence Scores und explizites Handling nicht belegter Aussagen."],
+              ["Wem gehoert der Twin?", "Ownership, Consent, Retention, Quellumfang und Offboarding-Rechte werden vor der Erfassung vertraglich definiert."],
+              ["Kann er in Systemen handeln?", "Nur ueber freigegebene MCP- oder n8n-Connectoren, mit Human Gates fuer externe Aktionen und High-Risk Decisions."],
+              ["Wie wird Qualitaet besser?", "Run Traces, Human Feedback und Outcome-Signale erzeugen Refinement Proposals, die vor einer neuen Version geprueft werden."],
+            ],
+            footer: "Governance gehoert in die Hauptstory, nicht in den Anhang",
+          },
+          {
+            theme: "dark",
+            eyebrow: "10 - 90-Tage-Pfad",
+            title: "Vom Event-Gespraech zum Working Pilot in einem Quartal.",
+            cards: [
+              ["1. Choose", "Einen kritischen Experten und ein Entscheidungsfeld mit messbarem Continuity-Risiko auswaehlen."],
+              ["2. Capture", "Strukturierte Elicitation, Source Upload, Transcript Capture und Entscheidungsbeispiele sammeln."],
+              ["3. Build", "Twin, Evidenzbasis, ersten Skill, Review Dashboard und Freigabegrenzen bauen."],
+              ["4. Validate", "Gegen reale Szenarien testen, Expert Output vs. Twin Output vergleichen, Cycle Time und Rework messen."],
+              ["5. Decide", "Scale-up freigeben, Domaene erweitern oder Pilot mit Learnings beenden."],
+            ],
+            footer: "Outcome: Working MVP plus Skalierungsentscheidung",
+          },
+          {
+            eyebrow: "11 - Der Ask",
+            title: "Waehlen Sie einen Experten, bevor sein Wissen das Gebaeude verlaesst.",
+            lead: "Der richtige erste Pilot ist keine breite AI-Transformation. Es ist ein wertvoller Experte, ein begrenztes Entscheidungsfeld, ein gesteuerter Twin und eine messbare Antwort darauf, ob Urteil verantwortungsvoll bewahrt werden kann.",
+            tags: ["Experten benennen", "Entscheidungsfeld waehlen", "Human Approval Gates definieren", "Mit realer Rail-Evidenz validieren"],
+            footer: "Vom Gespraech zur Faehigkeit",
+          },
+        ],
+      },
+    };
+
+    deck.en = refinedDeck.en;
+    deck.de = refinedDeck.de;
 
     const slidesRoot = document.getElementById("slides");
     const counter = document.getElementById("slideCounter");
