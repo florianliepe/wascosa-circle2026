@@ -452,6 +452,157 @@
       color: rgba(255, 250, 242, 0.82);
     }
 
+    .cinema {
+      display: grid;
+      grid-template-columns: minmax(0, 0.86fr) minmax(420px, 1fr);
+      gap: 34px;
+      align-items: stretch;
+    }
+
+    .video-stage {
+      position: relative;
+      min-height: 470px;
+      overflow: hidden;
+      border: 1px solid rgba(17, 21, 20, 0.12);
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(17, 21, 20, 0.12), rgba(17, 21, 20, 0.72)),
+        url("pitch-assets/wascosa-kalikai.png") center / cover;
+      box-shadow: var(--shadow);
+    }
+
+    .slide.dark .video-stage {
+      border-color: rgba(255, 250, 242, 0.18);
+      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .play-button {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+    }
+
+    .play-button span {
+      display: grid;
+      width: 96px;
+      height: 96px;
+      place-items: center;
+      border: 1px solid rgba(255, 250, 242, 0.42);
+      border-radius: 999px;
+      background: rgba(255, 250, 242, 0.14);
+      color: #fffaf2;
+      font-size: 42px;
+      font-weight: 900;
+      backdrop-filter: blur(14px);
+    }
+
+    .video-caption {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      bottom: 24px;
+      display: grid;
+      gap: 8px;
+      color: #fffaf2;
+    }
+
+    .video-caption strong { font-size: 22px; }
+    .video-caption span { color: rgba(255, 250, 242, 0.76); font-size: 15px; line-height: 1.35; }
+
+    .story-beats {
+      display: grid;
+      gap: 12px;
+      align-content: center;
+    }
+
+    .story-beat {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      gap: 14px;
+      align-items: start;
+      padding: 16px 0;
+      border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+    }
+
+    .story-beat b {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fffaf2;
+      font-size: 13px;
+    }
+
+    .story-beat strong { display: block; margin-bottom: 4px; font-size: 19px; }
+    .story-beat span { color: color-mix(in srgb, currentColor 68%, transparent); font-size: 16px; line-height: 1.38; }
+
+    .demo-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+      gap: 22px;
+      padding: 20px;
+      border: 1px solid rgba(255, 250, 242, 0.18);
+      border-radius: 20px;
+      background: rgba(255, 250, 242, 0.07);
+      box-shadow: 0 26px 80px rgba(0, 0, 0, 0.24);
+    }
+
+    .prompt-panel,
+    .result-panel {
+      display: grid;
+      gap: 12px;
+      align-content: start;
+      min-height: 420px;
+      border: 1px solid rgba(255, 250, 242, 0.16);
+      border-radius: 14px;
+      padding: 20px;
+      background: rgba(17, 21, 20, 0.42);
+    }
+
+    .prompt-line,
+    .result-line {
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(255, 250, 242, 0.08);
+      color: rgba(255, 250, 242, 0.82);
+      font-size: 15px;
+      line-height: 1.38;
+    }
+
+    .result-line strong { color: var(--mint); }
+
+    .metric-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .metric {
+      display: grid;
+      gap: 8px;
+      min-height: 132px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 253, 250, 0.78);
+    }
+
+    .metric strong {
+      color: var(--accent);
+      font-size: 28px;
+      line-height: 1;
+    }
+
+    .metric span {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.32;
+    }
+
     .footer {
       color: color-mix(in srgb, currentColor 58%, transparent);
       font-size: 12px;
@@ -529,6 +680,7 @@
       .slide { position: static; display: none; padding: 28px 20px 24px; }
       .slide.active { display: block; }
       .split, .grid-3, .grid-5, .faq-grid, .platform { grid-template-columns: 1fr; }
+      .cinema, .demo-shell, .metric-strip { grid-template-columns: 1fr; }
       h1 { font-size: 48px; }
       h2 { font-size: 40px; }
       .lead { font-size: 19px; }
@@ -926,7 +1078,21 @@
             footer: "Working name MeIDs - co-created with you, to act like you",
           },
           {
-            eyebrow: "06 - Defensible difference",
+            eyebrow: "06 - Video moment",
+            videoStory: true,
+            title: "Show how an expert becomes a twin.",
+            lead: "A short filmed sequence can make the concept tangible before the demo: the expert speaks, the platform structures the judgement, and the organisation keeps a reusable decision asset.",
+            beats: [
+              ["Record", "A real Wascosa-domain expert explains a difficult decision pattern in plain language."],
+              ["Structure", "The transcript becomes reviewed concepts: signals, exceptions, assumptions, decision boundaries."],
+              ["Activate", "A skill turns that knowledge into a meeting brief, maintenance decision support, or DAC migration check."],
+            ],
+            videoTitle: "60-90 sec pre-recorded concept film",
+            videoCaption: "Use real Wascosa setting and language; keep the operational scenario hypothetical unless approved.",
+            footer: "Recommended: safe video asset before live demo",
+          },
+          {
+            eyebrow: "07 - Defensible difference",
             title: "Three discriminators industrial buyers can test.",
             cards: [
               ["Cloned, not averaged", "The twin reflects one named expert's judgement, including the non-average call that a generic model would smooth away."],
@@ -937,7 +1103,7 @@
           },
           {
             theme: "dark",
-            eyebrow: "07 - Wascosa-relevant pilot",
+            eyebrow: "08 - Wascosa-relevant pilot",
             title: "Start with one expert whose judgement protects service continuity.",
             cards: [
               ["ECM / maintenance authority", "Capture exception logic for corrosion, service patterns, workshop constraints, and wagon availability."],
@@ -947,7 +1113,7 @@
             footer: "A safe pilot is narrow, high-value, and reviewable",
           },
           {
-            eyebrow: "08 - Example output",
+            eyebrow: "09 - Example output",
             title: "A twin turns scattered context into a decision brief.",
             features: [
               ["Input", "Calendar blocker, wagon context, customer notes, maintenance history, prior decisions, and meeting objective."],
@@ -958,7 +1124,27 @@
             footer: "From meeting preparation to operational decision support",
           },
           {
-            eyebrow: "09 - Governance first",
+            theme: "dark",
+            eyebrow: "10 - Live demo screen",
+            demo: true,
+            title: "Let the room see the twin work.",
+            lead: "Use a controlled, preloaded demo. The audience should see the mechanism: source context in, governed decision brief out, human approval boundary visible.",
+            inputTitle: "Demo input",
+            inputs: [
+              "Meeting blocker: Tanoos / dry-bulk operations alignment",
+              "Context: K+S flow, wagon availability, maintenance signal, open customer question",
+              "Instruction: prepare an executive decision brief for the next meeting",
+            ],
+            outputTitle: "Twin output",
+            outputs: [
+              ["Executive summary", "What changed, what matters, and why the decision is time-sensitive."],
+              ["Decision options", "Recommended path, alternative path, risks, and required human decision."],
+              ["Evidence and boundary", "Source links, confidence, unsupported claims, and actions requiring approval."],
+            ],
+            footer: "Live demo should be deterministic and preloaded",
+          },
+          {
+            eyebrow: "11 - Governance first",
             title: "In rail, an untraceable answer is a liability.",
             faqs: [
               ["How do we reduce hallucination risk?", "By grounding every answer in reviewed sources, confidence scores, and explicit unsupported-claim handling."],
@@ -969,8 +1155,20 @@
             footer: "Governance belongs in the main story, not the appendix",
           },
           {
+            eyebrow: "12 - Executive value case",
+            title: "Measure the pilot where executives feel the risk.",
+            lead: "The first pilot should not promise generic productivity. It should measure continuity of judgement in a decision domain Wascosa leaders recognise.",
+            metrics: [
+              ["-30%", "Shorter preparation time for recurring executive decision meetings."],
+              ["2x", "Faster onboarding into expert reasoning for new or adjacent team members."],
+              ["0", "External system actions without explicit human approval."],
+              ["1", "Named expert, one domain, one governed twin before broader scale-up."],
+            ],
+            footer: "Metrics are pilot targets, not benchmark claims",
+          },
+          {
             theme: "dark",
-            eyebrow: "10 - 90-day path",
+            eyebrow: "13 - 90-day path",
             title: "From event conversation to working pilot in one quarter.",
             cards: [
               ["1. Choose", "Select one critical expert and one decision domain with measurable continuity risk."],
@@ -982,7 +1180,7 @@
             footer: "Outcome: working MVP plus scale decision",
           },
           {
-            eyebrow: "11 - The ask",
+            eyebrow: "14 - The ask",
             title: "Pick one expert before the knowledge leaves the building.",
             lead: "The right first pilot is not a broad AI transformation. It is one high-value expert, one bounded decision domain, one governed twin, and a measurable answer to whether judgement can be retained responsibly.",
             tags: ["Name the expert", "Choose the decision domain", "Define human approval gates", "Validate with real rail evidence"],
@@ -1061,7 +1259,21 @@
             footer: "Working name MeIDs - co-created with you, to act like you",
           },
           {
-            eyebrow: "06 - Der belastbare Unterschied",
+            theme: "dark",
+            eyebrow: "06 - Video-Moment",
+            title: "Zeigen, wie aus einem Experten ein Twin wird.",
+            videoStory: true,
+            videoTitle: "60-90 Sekunden vorproduzierter Konzeptfilm",
+            videoCaption: "Ein reales Wascosa Setting: ein erfahrener Experte erklärt einen kritischen Entscheidungsfall. MeIDs nimmt auf, strukturiert die Logik, verknüpft Evidenz und macht daraus einen reviewbaren Twin-Moment. Operative Details bleiben für den Pitch bewusst hypothetisch.",
+            beats: [
+              ["Aufnehmen", "Stimme, Kontext und Entscheidungslogik werden aus Gespräch, Dokumenten und Beispielen erfasst."],
+              ["Strukturieren", "Der Twin trennt Fakten, Annahmen, Präferenzen, Risiken, Quellen und Freigabegrenzen."],
+              ["Aktivieren", "Im Live-Moment beantwortet er eine neue Frage mit Quellen, Confidence und klaren Human Gates."],
+            ],
+            footer: "Der Film macht das Konzept greifbar, bevor die Demo in Echtzeit arbeitet.",
+          },
+          {
+            eyebrow: "07 - Der belastbare Unterschied",
             title: "Drei Differenzierungsmerkmale, die industrielle Käufer testen können.",
             cards: [
               ["Geklont, nicht gemittelt", "Der Twin spiegelt das Urteil eines benannten Experten - inklusive der nicht-durchschnittlichen Entscheidung, die ein generisches Modell glätten würde."],
@@ -1072,7 +1284,7 @@
           },
           {
             theme: "dark",
-            eyebrow: "07 - Wascosa-relevanter Pilot",
+            eyebrow: "08 - Wascosa-relevanter Pilot",
             title: "Starten Sie mit einem Experten, dessen Urteil Service Continuity schützt.",
             cards: [
               ["ECM / Maintenance Authority", "Ausnahme-Logik zu Korrosion, Einsatzmustern, Werkstattrestriktionen und Wagenverfügbarkeit erfassen."],
@@ -1082,7 +1294,7 @@
             footer: "Ein sicherer Pilot ist eng, wertvoll und reviewbar",
           },
           {
-            eyebrow: "08 - Beispieloutput",
+            eyebrow: "09 - Beispieloutput",
             title: "Ein Twin macht aus verstreutem Kontext ein Decision Brief.",
             features: [
               ["Input", "Kalendereintrag, Wagenkontext, Kundennotizen, Maintenance History, frühere Entscheidungen und Meeting-Ziel."],
@@ -1093,7 +1305,26 @@
             footer: "Von Meeting Prep zu operativem Decision Support",
           },
           {
-            eyebrow: "09 - Governance zuerst",
+            theme: "dark",
+            eyebrow: "10 - Live-Demo-Screen",
+            title: "Den Twin im Raum arbeiten lassen.",
+            demo: true,
+            inputTitle: "Live Prompt",
+            outputTitle: "Twin Output",
+            input: [
+              "Bereite mich auf den Wascosa Kunden- und Service-Continuity Termin vor.",
+              "Nutze Kalendereintrag, Meetingnotizen, Wagenkontext und frühere Entscheidungen.",
+              "Zeige Entscheidungsbedarf, Risiken, Owner und was nicht autonom entschieden werden darf.",
+            ],
+            output: [
+              "Executive Summary mit den drei wahrscheinlichsten Spannungsfeldern.",
+              "Priorisierte To-dos nach Deadline, Stakeholder-Relevanz und Entscheidungsrisiko.",
+              "Quellenlinks, Confidence, offene Annahmen und Human Approval Gates für externe Aktionen.",
+            ],
+            footer: "Live Demo plus vorproduzierter Film: ein sicheres Format für Executive Publikum.",
+          },
+          {
+            eyebrow: "11 - Governance zuerst",
             title: "In Rail ist eine nicht nachvollziehbare Antwort ein Risiko.",
             faqs: [
               ["Wie reduzieren wir Halluzinationen?", "Durch geprüfte Quellen, Confidence Scores und explizites Handling nicht belegter Aussagen."],
@@ -1104,8 +1335,20 @@
             footer: "Governance gehört in die Hauptstory, nicht in den Anhang",
           },
           {
+            eyebrow: "12 - Executive Value Case",
+            title: "Den Pilot dort messen, wo Führung das Risiko spürt.",
+            metrics: [
+              ["-30%", "weniger Vorbereitungszeit für kritische Meetings und Übergaben"],
+              ["2x", "schnellerer Zugriff auf Expertenlogik in wiederkehrenden Entscheidungen"],
+              ["0", "externe Aktionen ohne Human Approval"],
+              ["1", "klar abgegrenzter Experte, Use Case und Governance Rahmen für den Start"],
+            ],
+            lead: "Die Zahlen sind Pilot-Hypothesen. Der Wert entsteht, wenn Wascosa reale Entscheidungsfälle gegen Twin-Output vergleicht: Zeit, Qualität, Nachvollziehbarkeit und Risikoreduktion.",
+            footer: "Executive Story: nicht AI-Effizienz allein, sondern steuerbare Expertenkontinuität.",
+          },
+          {
             theme: "dark",
-            eyebrow: "10 - 90-Tage-Pfad",
+            eyebrow: "13 - 90-Tage-Pfad",
             title: "Vom Event-Gespräch zum Working Pilot in einem Quartal.",
             cards: [
               ["1. Define", "Kritischen Experten, Entscheidungsfeld, Zielbild, Risiken und Erfolgskriterien präzise definieren."],
@@ -1117,7 +1360,7 @@
             footer: "Outcome: Working MVP plus Skalierungsentscheidung",
           },
           {
-            eyebrow: "11 - Der Ask",
+            eyebrow: "14 - Der Ask",
             title: "Wählen Sie einen Experten, bevor sein Wissen das Gebäude verlässt.",
             lead: "Der richtige erste Pilot ist keine breite AI-Transformation. Es ist ein wertvoller Experte, ein begrenztes Entscheidungsfeld, ein gesteuerter Twin und eine messbare Antwort darauf, ob Urteil verantwortungsvoll bewahrt werden kann.",
             tags: ["Experten benennen", "Entscheidungsfeld wählen", "Human Approval Gates definieren", "Mit realer Rail-Evidenz validieren"],
@@ -1200,6 +1443,56 @@
       `).join("")}</div>`;
     }
 
+    function renderVideoStory(slide) {
+      return `
+        <div class="cinema">
+          <div>
+            <h2>${escapeHtml(slide.title)}</h2>
+            ${slide.lead ? `<p class="lead" style="margin-top:22px">${escapeHtml(slide.lead)}</p>` : ""}
+            <div class="story-beats">
+              ${(slide.beats || []).map((beat, beatIndex) => `
+                <div class="story-beat">
+                  <b>${beatIndex + 1}</b>
+                  <div><strong>${escapeHtml(beat[0])}</strong><span>${escapeHtml(beat[1])}</span></div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+          <div class="video-stage">
+            <div class="play-button" aria-hidden="true"><span>▶</span></div>
+            <div class="video-caption"><strong>${escapeHtml(slide.videoTitle || "")}</strong><span>${escapeHtml(slide.videoCaption || "")}</span></div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderDemo(slide) {
+      return `
+        <h2>${escapeHtml(slide.title)}</h2>
+        ${slide.lead ? `<p class="lead">${escapeHtml(slide.lead)}</p>` : ""}
+        <div class="demo-shell">
+          <div class="prompt-panel">
+            <h3>${escapeHtml(slide.inputTitle || "Input")}</h3>
+            ${(slide.inputs || []).map((item) => `<div class="prompt-line">${escapeHtml(item)}</div>`).join("")}
+          </div>
+          <div class="result-panel">
+            <h3>${escapeHtml(slide.outputTitle || "Twin output")}</h3>
+            ${(slide.outputs || []).map((item) => `<div class="result-line"><strong>${escapeHtml(item[0])}</strong><br>${escapeHtml(item[1])}</div>`).join("")}
+          </div>
+        </div>
+      `;
+    }
+
+    function renderMetrics(slide) {
+      return `
+        <h2>${escapeHtml(slide.title)}</h2>
+        ${slide.lead ? `<p class="lead">${escapeHtml(slide.lead)}</p>` : ""}
+        <div class="metric-strip">
+          ${(slide.metrics || []).map((metric) => `<div class="metric"><strong>${escapeHtml(metric[0])}</strong><span>${escapeHtml(metric[1])}</span></div>`).join("")}
+        </div>
+      `;
+    }
+
     function renderBody(slide) {
       if (slide.question) {
         return `
@@ -1207,6 +1500,9 @@
           ${slide.lead ? `<p class="lead">${escapeHtml(slide.lead)}</p>` : ""}
         `;
       }
+      if (slide.videoStory) return renderVideoStory(slide);
+      if (slide.demo) return renderDemo(slide);
+      if (slide.metrics) return renderMetrics(slide);
       if (slide.visual === "rail") {
         return `
           <div class="split">
