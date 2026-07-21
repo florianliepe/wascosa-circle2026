@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -1370,8 +1370,235 @@
       },
     };
 
-    deck.en = refinedDeck.en;
-    deck.de = refinedDeck.de;
+    const keynoteDeck = {
+      en: {
+        prev: "Previous",
+        next: "Next",
+        footerPrefix: "Eraneos - innovation companion for governed AI adoption",
+        slides: [
+          {
+            theme: "hero",
+            eyebrow: "Wascosa Circle Event Hamburg - 27 Aug 2026",
+            title: "The irreplaceable, made repeatable.",
+            lead: "A retiring expert is not a staffing event. It is the moment decades of judgement either become institutional capability, or leave the company forever.",
+            tags: ["18-minute executive keynote", "Architecture on the main stage", "Real Wascosa context, hypothetical operations", "MeIDs Intellectual Twin"],
+            footer: "Beat 1 - one person, one story",
+          },
+          {
+            eyebrow: "01 - The structural risk",
+            title: "Rail freight is modernising faster than judgement can scale.",
+            cards: [
+              ["Retirement risk", "Operational know-how is concentrating in fewer, older heads while the next generation inherits more complex systems."],
+              ["Technology pressure", "DAC, telematics, ERTMS, cybersecurity and AI increase the need for cross-domain decision quality."],
+              ["Ecosystem complexity", "Wagon keepers, customers, workshops, terminals, regulators and corridor partners all need aligned judgement under time pressure."],
+            ],
+            footer: "Beat 2 - the numbers behind the story",
+          },
+          {
+            theme: "dark",
+            eyebrow: "02 - Why documentation failed",
+            question: "We documented the facts. We did not preserve how the decision was made.",
+            lead: "For forty years, knowledge transfer meant files, manuals, SharePoint folders and handover notes. They store what was said. They rarely preserve the trade-off, the exception, the tone, the risk appetite, or the reason an expert chose one path over another.",
+            footer: "Beat 3 - kill the obvious objection early",
+          },
+          {
+            eyebrow: "03 - Continuity of thought",
+            title: "The five benefits: continuity, availability, speed, consistency and compounding.",
+            features: [
+              ["Continuity", "Expert judgement survives retirement, illness, resignation, holidays and overloaded handovers."],
+              ["Availability", "One expert's reasoning can be present in every room, across shifts, countries and time zones."],
+              ["Speed", "No re-briefing from zero. The twin starts where the context actually is."],
+              ["Consistency", "The same standard is applied on the good day and the bad one, in the main plant and the small depot."],
+              ["Compounding", "OKF turns knowledge into small, linked concepts - who asserted it, when, why, with which evidence - so every use enriches the reasoning fabric."],
+            ],
+            footer: "Beat 4 - concept 1: not a bulk database; a fabric of thought",
+          },
+          {
+            theme: "dark",
+            eyebrow: "04 - Architecture proof",
+            title: "One question travels through a governed system, not through a black box.",
+            lead: "Three USPs make it different: cloned, not averaged; continuity of thought; judgement you can challenge. Bottom up: evidence becomes connected OKF concepts; the twin reasons over that fabric; the agentic butler activates approved skills; the human review loop sharpens standards, ethics and personality.",
+            layers: [
+              ["OKF concept fabric", "Documents, transcripts, examples and decisions become traceable, connected knowledge concepts."],
+              ["Intellectual twin", "The actor agent applies one named expert's judgement, preferences, tone, and decision boundaries."],
+              ["Agentic butler", "A capability layer fetches or runs the approved skill needed for the task instead of adding isolated agents one by one."],
+              ["Task agents", "Specialists execute narrow subtasks with explicit tools, contracts, evidence and escalation rules."],
+              ["Human standard loop", "The expert reviews outputs, corrects standards, and defines what good, ethical and in-character means."],
+              ["Trace and governance", "Every answer exposes the path it took. In rail, an answer you cannot trace is a liability."],
+            ],
+            footer: "Beat 5 - credibility hinge: architecture on the main stage",
+          },
+          {
+            eyebrow: "05 - The butler",
+            title: "Knowledge becomes capability when the twin can acquire skills.",
+            cards: [
+              ["Knowing is not doing", "The twin may know the context, but the butler turns that knowledge into meeting briefs, daily steering, decision options, checks and drafts."],
+              ["More than agent stacking", "The answer is not one agent per task until nobody understands the system. One twin gains governed skills that remain reusable."],
+              ["Human approval by design", "The twin may prepare, reason and recommend. It must ask before sending messages, setting meetings, committing dates, or triggering external actions."],
+            ],
+            footer: "Beat 6 - concept 2: skills make judgement operational",
+          },
+          {
+            theme: "dark",
+            eyebrow: "06 - The human-only part",
+            title: "Quality standards, ethics and personality are co-created, not configured.",
+            features: [
+              ["Standard", "The expert defines what good looks like in this domain: enough evidence, acceptable risk, right tone, right escalation."],
+              ["Iteration", "The twin applies the standard, the human corrects it, and the standard becomes sharper over time."],
+              ["Trust", "This loop is why the twin stays attributable and challengeable. It is not vendor personality; it is human-shaped operating judgement."],
+              ["Governance", "A refined standard becomes a reviewed version, not silent model drift."],
+            ],
+            footer: "Beat 7 - concept 3: the trust answer",
+          },
+          {
+            eyebrow: "07 - Twins meeting twins",
+            title: "When twins interact, disagreement becomes visible instead of political.",
+            lead: "A question that today needs three calendars and two weeks - maintenance, commercial, regulatory - can be explored in minutes. More importantly, disagreement becomes explicit, with the reasoning on both sides.",
+            cards: [
+              ["Maintenance twin", "Shows constraints, precedent, service continuity risk, and technical exception logic."],
+              ["Commercial twin", "Shows customer impact, relationship history, commitments, and communication sensitivity."],
+              ["Regulatory twin", "Shows compliance boundaries, approval needs, and where confidence must stop."],
+            ],
+            footer: "Beat 8 - first scale step",
+          },
+          {
+            theme: "dark",
+            eyebrow: "08 - Company twin",
+            title: "The bold horizon is not one brain. It is a council.",
+            lead: "A company twin aggregates the OKF fabrics of individual twins without averaging them into anonymity. Every voice stays attributable; every answer stays traceable to a person, source, standard or decision path.",
+            features: [
+              ["Queryable institution", "Ask why a decision was made in 2019 and receive the reasoning path, not only the file."],
+              ["Continuity risk map", "See which knowledge exists in exactly one head before that person retires."],
+              ["Explicit culture", "Standards, ethics and taste become inspectable, debatable and deliberately improved."],
+              ["Network compounding", "Every expert added creates new links to everyone already there. The value grows faster than headcount."],
+            ],
+            footer: "Beat 9 - paint the meta-twin vision",
+          },
+          {
+            eyebrow: "09 - Honest status and the ask",
+            title: "Start with one expert, one domain, twelve months.",
+            lead: "This is a working prototype direction, not a finished fleet-scale product. The credible next step is one Wascosa-relevant domain, one retiring or overloaded expert, one governed twin, one skill, and a measured answer to whether judgement can be retained responsibly.",
+            tags: ["Pick the expert", "Choose the decision domain", "Capture real examples", "Build one governed skill", "Validate with expert review"],
+            footer: "Beat 10 - convert vision into a concrete pilot",
+          },
+        ],
+      },
+      de: {
+        prev: "Zurueck",
+        next: "Weiter",
+        footerPrefix: "Eraneos - Innovationsbegleiter fuer verantwortungsvolle AI-Adoption",
+        slides: [
+          {
+            theme: "hero",
+            eyebrow: "Wascosa Circle Event Hamburg - 27. August 2026",
+            title: "Das Unersetzliche wiederholbar machen.",
+            lead: "Wenn ein Experte in Rente geht, ist das nicht nur ein Personalereignis. Es ist der Moment, in dem Jahrzehnte Urteil entweder zur institutionellen Faehigkeit werden - oder das Unternehmen verlassen.",
+            tags: ["18-Minuten Executive Keynote", "Architektur auf der Hauptbuehne", "Realer Wascosa Kontext, hypothetische Operations", "MeIDs Intellectual Twin"],
+            footer: "Beat 1 - eine Person, eine Geschichte",
+          },
+          {
+            eyebrow: "01 - Das strukturelle Risiko",
+            title: "Rail Freight modernisiert schneller, als Urteil skalieren kann.",
+            cards: [
+              ["Ruhestandsrisiko", "Operatives Know-how konzentriert sich in weniger, aelteren Koepfen, waehrend die naechste Generation komplexere Systeme uebernimmt."],
+              ["Technologiedruck", "DAC, Telematik, ERTMS, Cybersecurity und AI erhoehen den Bedarf an domänenuebergreifender Entscheidungsqualitaet."],
+              ["Oekosystem-Komplexitaet", "Wagenhalter, Kunden, Werkstaetten, Terminals, Regulatorik und Korridorpartner brauchen abgestimmtes Urteil unter Zeitdruck."],
+            ],
+            footer: "Beat 2 - die Zahlen hinter der Geschichte",
+          },
+          {
+            theme: "dark",
+            eyebrow: "02 - Warum Dokumentation scheitert",
+            question: "Wir haben Fakten dokumentiert. Wir haben nicht bewahrt, wie entschieden wurde.",
+            lead: "Seit vierzig Jahren bedeutet Wissenstransfer Dateien, Handbuecher, SharePoint-Ordner und Uebergabenotizen. Sie speichern, was gesagt wurde. Sie bewahren selten den Trade-off, die Ausnahme, den Ton, die Risikohaltung oder den Grund, warum ein Experte einen Weg waehlt.",
+            footer: "Beat 3 - den naheliegenden Einwand frueh klaeren",
+          },
+          {
+            eyebrow: "03 - Kontinuitaet des Denkens",
+            title: "Die fuenf Nutzen: Kontinuitaet, Verfuegbarkeit, Geschwindigkeit, Konsistenz und Compounding.",
+            features: [
+              ["Kontinuitaet", "Expertenurteil ueberlebt Ruhestand, Krankheit, Kuendigung, Urlaub und ueberlastete Uebergaben."],
+              ["Verfuegbarkeit", "Die Logik eines Experten kann in jedem Raum wirken, ueber Schichten, Laender und Zeitzonen hinweg."],
+              ["Geschwindigkeit", "Kein Re-Briefing bei null. Der Twin startet dort, wo der Kontext tatsaechlich steht."],
+              ["Konsistenz", "Der gleiche Standard gilt am guten und am schlechten Tag, im Hauptwerk und im kleinen Depot."],
+              ["Compounding", "OKF macht Wissen zu kleinen, verknuepften Konzepten - wer es gesagt hat, wann, warum, mit welcher Evidenz - sodass jede Nutzung das Denkgewebe anreichert."],
+            ],
+            footer: "Beat 4 - Konzept 1: keine Massendatenbank, sondern ein Denkgewebe",
+          },
+          {
+            theme: "dark",
+            eyebrow: "04 - Architekturbeweis",
+            title: "Eine Frage laeuft durch ein gesteuertes System, nicht durch eine Black Box.",
+            lead: "Drei USPs machen den Unterschied: geklont, nicht gemittelt; Kontinuitaet des Denkens; Urteil, das man herausfordern kann. Von unten nach oben: Evidenz wird zu verbundenen OKF-Konzepten; der Twin denkt auf diesem Gewebe; der agentic Butler aktiviert freigegebene Skills; der Human Review Loop schaerft Standards, Ethik und Persoenlichkeit.",
+            layers: [
+              ["OKF-Konzeptgewebe", "Dokumente, Transkripte, Beispiele und Entscheidungen werden zu nachvollziehbaren, verknuepften Wissenskonzepten."],
+              ["Intellectual Twin", "Der Actor Agent wendet Urteil, Praeferenzen, Tonalitaet und Entscheidungsgrenzen eines benannten Experten an."],
+              ["Agentic Butler", "Eine Faehigkeitsebene holt oder startet den freigegebenen Skill, den die Aufgabe braucht, statt isolierte Agents zu stapeln."],
+              ["Task Agents", "Spezialisten bearbeiten eng definierte Teilaufgaben mit klaren Tools, Vertraegen, Evidenz und Eskalationsregeln."],
+              ["Human Standard Loop", "Der Experte prueft Outputs, korrigiert Standards und definiert, was gut, ethisch und in-character bedeutet."],
+              ["Trace und Governance", "Jede Antwort zeigt den Weg, den sie genommen hat. In Rail ist eine nicht nachvollziehbare Antwort ein Risiko."],
+            ],
+            footer: "Beat 5 - Glaubwuerdigkeitsanker: Architektur auf der Hauptbuehne",
+          },
+          {
+            eyebrow: "05 - Der Butler",
+            title: "Wissen wird Faehigkeit, wenn der Twin Skills erwerben kann.",
+            cards: [
+              ["Wissen ist noch kein Tun", "Der Twin kann Kontext kennen; der Butler macht daraus Briefings, Daily Steering, Entscheidungsoptionen, Checks und Entwuerfe."],
+              ["Mehr als Agent-Stapelung", "Die Loesung ist nicht ein Agent pro Aufgabe, bis niemand das System versteht. Ein Twin erwirbt gesteuerte Skills, die wiederverwendbar bleiben."],
+              ["Human Approval by Design", "Der Twin darf vorbereiten, denken und empfehlen. Er muss fragen, bevor er Nachrichten sendet, Meetings setzt, Termine zusagt oder externe Aktionen ausloest."],
+            ],
+            footer: "Beat 6 - Konzept 2: Skills machen Urteil operativ",
+          },
+          {
+            theme: "dark",
+            eyebrow: "06 - Der menschliche Teil",
+            title: "Qualitaetsstandards, Ethik und Persoenlichkeit werden co-kreiert, nicht konfiguriert.",
+            features: [
+              ["Standard", "Der Experte definiert, was in dieser Domaene gut ist: genug Evidenz, akzeptables Risiko, richtiger Ton, richtige Eskalation."],
+              ["Iteration", "Der Twin wendet den Standard an, der Mensch korrigiert ihn, und der Standard wird mit der Zeit schaerfer."],
+              ["Vertrauen", "Dieser Loop macht den Twin zurechenbar und herausforderbar. Es ist keine Vendor-Persoenlichkeit, sondern menschlich gepraegtes Operating Judgement."],
+              ["Governance", "Ein verfeinerter Standard wird eine gepruefte Version, kein stiller Model Drift."],
+            ],
+            footer: "Beat 7 - Konzept 3: die Vertrauensantwort",
+          },
+          {
+            eyebrow: "07 - Twins im Dialog",
+            title: "Wenn Twins interagieren, wird Widerspruch sichtbar statt politisch.",
+            lead: "Eine Frage, die heute drei Kalender und zwei Wochen braucht - Maintenance, Commercial, Regulatory - kann in Minuten exploriert werden. Wichtiger: Unterschiedliche Sichtweisen werden explizit, mit Begruendung auf beiden Seiten.",
+            cards: [
+              ["Maintenance Twin", "Zeigt Restriktionen, Praezedenzfaelle, Service-Continuity-Risiken und technische Ausnahmelogik."],
+              ["Commercial Twin", "Zeigt Kundenwirkung, Beziehungshistorie, Zusagen und kommunikative Sensitivitaet."],
+              ["Regulatory Twin", "Zeigt Compliance-Grenzen, Freigabebedarf und wo Confidence stoppen muss."],
+            ],
+            footer: "Beat 8 - erster Skalierungsschritt",
+          },
+          {
+            theme: "dark",
+            eyebrow: "08 - Company Twin",
+            title: "Der Horizont ist nicht ein Gehirn. Es ist ein Council.",
+            lead: "Ein Company Twin aggregiert die OKF-Gewebe individueller Twins, ohne sie zu einem anonymen Durchschnitt zu machen. Jede Stimme bleibt zurechenbar; jede Antwort bleibt auf Person, Quelle, Standard oder Entscheidungspfad rueckfuehrbar.",
+            features: [
+              ["Abfragbare Institution", "Warum wurde 2019 so entschieden? Die Antwort liefert den Begruendungspfad, nicht nur die Datei."],
+              ["Continuity Risk Map", "Sichtbar wird, welches Wissen genau in einem Kopf existiert, bevor diese Person geht."],
+              ["Explizite Kultur", "Standards, Ethik und Geschmack werden inspizierbar, diskutierbar und gezielt veraenderbar."],
+              ["Network Compounding", "Jeder zusaetzliche Experte erzeugt neue Verbindungen zu allen, die schon da sind. Der Wert waechst schneller als Headcount."],
+            ],
+            footer: "Beat 9 - die Meta-Twin Vision ausmalen",
+          },
+          {
+            eyebrow: "09 - Ehrlicher Status und Ask",
+            title: "Starten mit einem Experten, einer Domaene, zwoelf Monaten.",
+            lead: "Das ist eine funktionierende Prototyp-Richtung, kein fertiges Fleet-Scale Produkt. Der glaubwuerdige naechste Schritt ist eine Wascosa-relevante Domaene, ein retiring oder ueberlasteter Experte, ein gesteuerter Twin, ein Skill und eine messbare Antwort, ob Urteil verantwortungsvoll erhalten werden kann.",
+            tags: ["Experten waehlen", "Entscheidungsdomaene definieren", "Reale Beispiele erfassen", "Einen gesteuerten Skill bauen", "Mit Expert Review validieren"],
+            footer: "Beat 10 - Vision in einen konkreten Pilot uebersetzen",
+          },
+        ],
+      },
+    };
+
+    deck.en = keynoteDeck.en;
+    deck.de = keynoteDeck.de;
 
     const slidesRoot = document.getElementById("slides");
     const counter = document.getElementById("slideCounter");
