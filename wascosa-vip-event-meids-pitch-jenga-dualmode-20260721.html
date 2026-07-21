@@ -1,0 +1,951 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MeIDs Intellectual Twin Keynote - Jenga Dual Mode</title>
+  <style>
+    :root {
+      --ink: #101312;
+      --paper: #f7f3ea;
+      --muted: #7b817b;
+      --line: rgba(16, 19, 18, 0.14);
+      --red: #e1352b;
+      --orange: #ff6b2b;
+      --mint: #91e6ce;
+      --gold: #d9b76a;
+      --blue: #6ea8ff;
+      --dark: #0e1211;
+      --panel: rgba(255, 252, 244, 0.82);
+      --shadow: 0 34px 110px rgba(16, 19, 18, 0.18);
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+      overflow: hidden;
+      background: var(--dark);
+      color: var(--ink);
+    }
+
+    .deck {
+      display: grid;
+      grid-template-rows: 1fr auto;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .slides {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      display: none;
+      grid-template-rows: auto 1fr auto;
+      gap: 24px;
+      padding: 44px 62px 34px;
+      background:
+        radial-gradient(circle at 18% 10%, rgba(255, 107, 43, 0.12), transparent 28%),
+        linear-gradient(145deg, rgba(247, 243, 234, 0.98), rgba(235, 230, 219, 0.96));
+      color: var(--ink);
+    }
+
+    .slide.active { display: grid; }
+
+    .slide.dark {
+      background:
+        radial-gradient(circle at 86% 12%, rgba(145, 230, 206, 0.18), transparent 26%),
+        radial-gradient(circle at 12% 86%, rgba(255, 107, 43, 0.14), transparent 30%),
+        linear-gradient(145deg, #0a0d0c, #151b19);
+      color: #fff9ed;
+    }
+
+    .slide.hero {
+      background:
+        linear-gradient(90deg, rgba(8, 10, 10, 0.90), rgba(8, 10, 10, 0.48)),
+        url("pitch-assets/wascosa-kalikai.png") center / cover;
+      color: #fff9ed;
+    }
+
+    .topbar,
+    .footer,
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 46px;
+      padding: 8px 12px;
+      border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+      border-radius: 18px;
+      background: color-mix(in srgb, currentColor 6%, transparent);
+      backdrop-filter: blur(16px);
+      font-weight: 900;
+    }
+
+    .brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: #050707;
+      object-fit: contain;
+    }
+
+    .mode-switch {
+      display: inline-flex;
+      gap: 6px;
+      padding: 6px;
+      border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+      border-radius: 999px;
+      background: color-mix(in srgb, currentColor 6%, transparent);
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      font: inherit;
+      font-weight: 850;
+      cursor: pointer;
+    }
+
+    .mode-switch button,
+    .controls button {
+      padding: 10px 14px;
+      color: inherit;
+      background: transparent;
+    }
+
+    .mode-switch button.active {
+      background: var(--mint);
+      color: var(--ink);
+    }
+
+    .content {
+      display: grid;
+      align-content: center;
+      gap: 30px;
+      min-height: 0;
+    }
+
+    .kicker {
+      display: inline-flex;
+      width: fit-content;
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dark .kicker,
+    .hero .kicker { color: var(--mint); }
+
+    h1,
+    h2,
+    p { margin: 0; }
+
+    h1 {
+      max-width: 1120px;
+      font-size: clamp(62px, 7.7vw, 112px);
+      line-height: 0.92;
+    }
+
+    h2 {
+      max-width: 1180px;
+      font-size: clamp(42px, 5.4vw, 78px);
+      line-height: 0.98;
+    }
+
+    .lead {
+      max-width: 960px;
+      color: color-mix(in srgb, currentColor 72%, transparent);
+      font-size: 24px;
+      line-height: 1.38;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(420px, 0.98fr);
+      gap: 34px;
+      align-items: center;
+    }
+
+    .cards,
+    .steps,
+    .benefits {
+      display: grid;
+      gap: 14px;
+    }
+
+    .cards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .benefits { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+
+    .card,
+    .step,
+    .quote,
+    .demo-panel {
+      border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+      border-radius: 16px;
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+
+    .dark .card,
+    .dark .step,
+    .dark .quote,
+    .dark .demo-panel,
+    .hero .card {
+      background: rgba(255, 249, 237, 0.08);
+      color: #fff9ed;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.28);
+    }
+
+    .card,
+    .step {
+      display: grid;
+      gap: 12px;
+      min-height: 168px;
+      padding: 24px;
+    }
+
+    .card strong,
+    .step strong {
+      font-size: 22px;
+      line-height: 1.1;
+    }
+
+    .card span,
+    .step span,
+    .notes {
+      color: color-mix(in srgb, currentColor 66%, transparent);
+      font-size: 16px;
+      line-height: 1.42;
+    }
+
+    .benefit {
+      display: grid;
+      gap: 9px;
+      min-height: 150px;
+      padding: 18px;
+      border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+      border-radius: 14px;
+      background: color-mix(in srgb, currentColor 5%, transparent);
+    }
+
+    .benefit b {
+      color: var(--orange);
+      font-size: 13px;
+      text-transform: uppercase;
+    }
+
+    .dark .benefit b { color: var(--mint); }
+    .benefit span { color: color-mix(in srgb, currentColor 66%, transparent); font-size: 15px; line-height: 1.36; }
+
+    .jenga {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      gap: 8px;
+      min-height: 500px;
+      align-content: center;
+      perspective: 900px;
+    }
+
+    .block-row {
+      display: grid;
+      grid-template-columns: repeat(3, 128px);
+      gap: 8px;
+      transform: rotateX(0deg);
+    }
+
+    .block-row:nth-child(even) { transform: translateX(14px); }
+
+    .block {
+      height: 38px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #e8d3a0, #b98a4d);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.34), 0 14px 26px rgba(0,0,0,0.18);
+    }
+
+    .missing {
+      background: repeating-linear-gradient(45deg, rgba(225,53,43,0.18), rgba(225,53,43,0.18) 8px, transparent 8px, transparent 16px);
+      border: 1px dashed rgba(225,53,43,0.82);
+      box-shadow: none;
+    }
+
+    .brace {
+      position: absolute;
+      inset: auto auto 70px 50%;
+      width: 430px;
+      height: 110px;
+      transform: translateX(-50%);
+      border: 2px solid var(--mint);
+      border-top: 0;
+      border-radius: 0 0 28px 28px;
+      opacity: 0.82;
+    }
+
+    .concept-fabric {
+      position: relative;
+      min-height: 470px;
+      border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+      border-radius: 28px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 32%, rgba(145, 230, 206, 0.30), transparent 9%),
+        radial-gradient(circle at 44% 18%, rgba(255, 107, 43, 0.22), transparent 9%),
+        radial-gradient(circle at 72% 38%, rgba(110, 168, 255, 0.26), transparent 10%),
+        radial-gradient(circle at 36% 70%, rgba(217, 183, 106, 0.28), transparent 9%),
+        radial-gradient(circle at 78% 74%, rgba(145, 230, 206, 0.20), transparent 8%),
+        rgba(255, 249, 237, 0.06);
+    }
+
+    .concept-fabric::before,
+    .concept-fabric::after {
+      content: "";
+      position: absolute;
+      inset: 13%;
+      border: 1px dashed color-mix(in srgb, currentColor 28%, transparent);
+      border-radius: 999px;
+      transform: rotate(-10deg);
+    }
+
+    .concept-fabric::after {
+      inset: 25% 10%;
+      transform: rotate(18deg);
+    }
+
+    .node {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      width: 132px;
+      min-height: 68px;
+      padding: 12px;
+      border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+      border-radius: 18px;
+      background: rgba(255, 249, 237, 0.12);
+      text-align: center;
+      font-size: 13px;
+      font-weight: 850;
+      line-height: 1.16;
+      backdrop-filter: blur(12px);
+    }
+
+    .n-a { top: 12%; left: 10%; }
+    .n-b { top: 8%; right: 16%; }
+    .n-c { top: 42%; left: 35%; }
+    .n-d { bottom: 14%; left: 12%; }
+    .n-e { bottom: 12%; right: 12%; }
+
+    .architecture {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .arch {
+      position: relative;
+      display: grid;
+      align-content: center;
+      gap: 8px;
+      min-height: 210px;
+      padding: 22px;
+      border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+      border-radius: 16px;
+      background: color-mix(in srgb, currentColor 7%, transparent);
+      text-align: center;
+    }
+
+    .arch:not(:last-child)::after {
+      content: ">";
+      position: absolute;
+      top: 50%;
+      right: -12px;
+      color: var(--mint);
+      font-weight: 900;
+      transform: translateY(-50%);
+    }
+
+    .arch b { color: var(--mint); font-size: 14px; text-transform: uppercase; }
+    .arch span { color: color-mix(in srgb, currentColor 68%, transparent); font-size: 14px; line-height: 1.34; }
+
+    .demo {
+      display: grid;
+      grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr);
+      gap: 22px;
+    }
+
+    .demo-panel {
+      display: grid;
+      gap: 12px;
+      min-height: 390px;
+      padding: 22px;
+      align-content: start;
+    }
+
+    .demo-line {
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: color-mix(in srgb, currentColor 7%, transparent);
+      color: color-mix(in srgb, currentColor 74%, transparent);
+      font-size: 16px;
+      line-height: 1.36;
+    }
+
+    .demo-line strong { color: var(--mint); }
+
+    .quote {
+      max-width: 980px;
+      padding: 34px;
+      border-left: 8px solid var(--orange);
+      font-size: clamp(34px, 4.2vw, 60px);
+      line-height: 1.05;
+      font-weight: 900;
+    }
+
+    .notes {
+      max-width: 920px;
+      padding-top: 4px;
+      font-size: 14px;
+    }
+
+    .footer {
+      color: color-mix(in srgb, currentColor 56%, transparent);
+      font-size: 12px;
+      font-weight: 760;
+    }
+
+    .controls {
+      border-top: 1px solid rgba(255, 249, 237, 0.12);
+      background: rgba(8, 10, 10, 0.92);
+      color: #fff9ed;
+      padding: 10px 18px;
+    }
+
+    .controls button {
+      min-width: 100px;
+      border: 1px solid rgba(255, 249, 237, 0.18);
+      background: rgba(255, 249, 237, 0.08);
+    }
+
+    .progress {
+      flex: 1;
+      height: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(255, 249, 237, 0.13);
+    }
+
+    .progress span {
+      display: block;
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--orange), var(--mint));
+    }
+
+    @media (max-width: 980px) {
+      body { overflow: auto; }
+      .deck, .slides, .slide { display: block; height: auto; min-height: 100vh; }
+      .slide { position: static; display: none; padding: 28px 20px; }
+      .slide.active { display: block; }
+      .split, .cards, .benefits, .architecture, .demo { grid-template-columns: 1fr; }
+      h1 { font-size: 48px; }
+      h2 { font-size: 38px; }
+      .lead { font-size: 19px; }
+      .jenga { transform: scale(0.78); transform-origin: top center; min-height: 420px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section id="slides" class="slides" aria-live="polite"></section>
+    <nav class="controls" aria-label="Presentation controls">
+      <button type="button" id="prevBtn">Previous</button>
+      <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+      <span id="slideCounter">1 / 12</span>
+      <button type="button" id="nextBtn">Next</button>
+    </nav>
+  </main>
+
+  <script>
+    const assets = {
+      meids: "pitch-assets/meids-symbol.svg",
+      wascosa: "pitch-assets/wascosa-logo.svg",
+    };
+
+    const decks = {
+      wascosa: {
+        label: "Wascosa / cargo rail",
+        slides: [
+          {
+            type: "hero",
+            kicker: "Wascosa Circle Event - stage keynote",
+            title: "What leaves when the expert leaves?",
+            lead: "In cargo rail, the dangerous loss is not only headcount. It is the invisible judgement that keeps complex systems structurally intact.",
+            tags: ["Jenga story spine", "Expert knowledge risk", "MeIDs intellectual twin", "Wascosa-ready pilot"],
+            note: "Open with one person, one story. Do not explain technology yet. Make the room feel the knowledge-loss problem before naming the solution.",
+          },
+          {
+            type: "jenga",
+            kicker: "The Jenga problem",
+            title: "You do not know which knowledge block is weight-bearing.",
+            lead: "Organizations behave like Jenga towers. Remove one expert, one dispatcher, one maintenance authority, one commercial memory - and you often discover too late whether that block held the structure.",
+            note: "Pause on the missing block. This is the core analogy: when it comes to expert knowledge, you do not know what you no longer know.",
+          },
+          {
+            type: "quote",
+            dark: true,
+            kicker: "The strategic risk",
+            quote: "The hidden risk is not that knowledge disappears. It is that nobody knows which missing concept was critical.",
+            note: "This is the memorable line. It should survive after the keynote.",
+          },
+          {
+            type: "cards",
+            kicker: "Why documents fail",
+            title: "Files preserve statements. They rarely preserve judgement.",
+            cards: [
+              ["The fact", "A maintenance note, customer issue, workshop constraint, or corridor signal."],
+              ["The reasoning", "Why the expert treats this case as normal, exceptional, urgent, or politically sensitive."],
+              ["The consequence", "Which action is safe, which needs escalation, and which promise must not be made."],
+            ],
+            note: "Kill the obvious objection: more documentation is not enough. The missing layer is reasoning.",
+          },
+          {
+            type: "fabric",
+            dark: true,
+            kicker: "OKF: compounded knowledge",
+            title: "The fix is not a bigger database. It is a resilient concept fabric.",
+            lead: "OKF captures knowledge as connected concepts: sources, assertions, reasoning paths, decision boundaries, confidence, owners and review states. Instead of one bulk archive, the organization gains a structure that can absorb loss and keep reasoning intact.",
+            nodes: ["Evidence", "Concept", "Reasoning", "Boundary", "Review"],
+            note: "Use the resilient Jenga turn here: imagine blocks can be removed, but the structure remains functional because relationships and load paths are preserved.",
+          },
+          {
+            type: "architecture",
+            dark: true,
+            kicker: "Architecture on the main stage",
+            title: "A twin turns concept fabric into governed action.",
+            steps: [
+              ["OKF", "Compounded knowledge concepts"],
+              ["Twin", "Named expert judgement"],
+              ["Butler", "Skill acquisition layer"],
+              ["Agents", "Narrow task execution"],
+              ["Human loop", "Quality, ethics, approval"],
+            ],
+            note: "Narrate left to right. The butler is the capability bridge: more than adding agent after agent.",
+          },
+          {
+            type: "benefits",
+            kicker: "Five executive benefits",
+            title: "What Wascosa gets if the tower becomes resilient.",
+            benefits: [
+              ["Continuity", "Expert judgement survives retirement, illness and overloaded handovers."],
+              ["Availability", "A scarce expert's reasoning can support more rooms, shifts and countries."],
+              ["Speed", "Decisions start from existing context instead of repeated re-briefing."],
+              ["Consistency", "The same reviewed standard applies across teams and sites."],
+              ["Compounding", "Every reviewed use enriches the knowledge fabric instead of becoming another lost meeting."],
+            ],
+            note: "Make this the board-level value slide. No technical vocabulary beyond what has already been earned.",
+          },
+          {
+            type: "cards",
+            dark: true,
+            kicker: "Cargo examples",
+            title: "Core cargo issues become twin-ready work.",
+            cards: [
+              ["Service continuity", "Prepare a decision brief from wagon availability, workshop slots, customer commitments and prior exceptions."],
+              ["Maintenance exception", "Surface corrosion logic, precedent, confidence and escalation needs before a wrong call creates downstream risk."],
+              ["DAC migration", "Model trade-offs across fleet retrofit, corridor readiness, contracts, workshops and regulatory timing."],
+            ],
+            note: "Use real Wascosa context and keep operational details hypothetical unless approved.",
+          },
+          {
+            type: "demo",
+            kicker: "Demo focus",
+            title: "Show one controlled story: from scattered context to decision brief.",
+            input: [
+              "Meeting blocker: service-continuity alignment",
+              "Sources: calendar, customer notes, wagon context, maintenance signal, prior decisions",
+              "Instruction: prepare an executive decision brief",
+            ],
+            output: [
+              ["Executive summary", "What changed, why it matters, and where decision pressure sits."],
+              ["Options", "Recommended path, alternative path, risk, owner and next action."],
+              ["Trace", "Evidence links, confidence, unsupported assumptions and human approval gates."],
+            ],
+            note: "Avoid broad demo sprawl. One scenario, deterministic, preloaded, with trace and human boundary visible.",
+          },
+          {
+            type: "cards",
+            kicker: "Twins meeting twins",
+            title: "When twins interact, disagreement becomes visible.",
+            cards: [
+              ["Maintenance twin", "Protects technical constraints, service risk and exception precedent."],
+              ["Commercial twin", "Protects customer promise, account history and communication sensitivity."],
+              ["Regulatory twin", "Protects compliance boundaries and where confidence must stop."],
+            ],
+            note: "This is the first scale step: not replacing meetings, but making disagreement explicit before the meeting.",
+          },
+          {
+            type: "quote",
+            dark: true,
+            kicker: "Company twin",
+            quote: "The horizon is a company you can ask - not one averaged brain, but a council of attributable judgement.",
+            note: "Make the meta-twin bold. It aggregates OKF fabrics while preserving who said what and why.",
+          },
+          {
+            type: "final",
+            kicker: "The ask",
+            title: "One expert. One domain. One resilient tower.",
+            lead: "Start with a Wascosa-relevant expert and one decision domain. Capture real examples, build the OKF fabric, activate one governed skill, and compare expert output with twin output over twelve months.",
+            tags: ["Pick the expert", "Choose the domain", "Capture real decisions", "Build one skill", "Measure continuity"],
+            note: "End with a concrete pilot, not a platform promise.",
+          },
+        ],
+      },
+      generic: {
+        label: "Generic industry template",
+        slides: [
+          {
+            type: "hero",
+            kicker: "Generic executive keynote",
+            title: "What leaves when the expert leaves?",
+            lead: "Every knowledge-intensive organization has people whose judgement keeps the system intact. The problem is that nobody knows which knowledge blocks are weight-bearing until one is removed.",
+            tags: ["Reusable keynote spine", "Industry-neutral", "Expert continuity", "Intellectual twin"],
+            note: "Replace the industry noun and the examples, not the core story.",
+          },
+          {
+            type: "jenga",
+            kicker: "The Jenga problem",
+            title: "Organizations lose critical knowledge invisibly.",
+            lead: "Processes look stable until a specific human judgement disappears. Then teams discover that the missing block was part of the load-bearing structure.",
+            note: "Universal analogy for regulated, operational, expert-heavy industries.",
+          },
+          {
+            type: "quote",
+            dark: true,
+            kicker: "The strategic risk",
+            quote: "You cannot govern what you cannot see. You cannot preserve what you never made explicit.",
+            note: "Industry-neutral memorable line.",
+          },
+          {
+            type: "cards",
+            kicker: "Why documents fail",
+            title: "Traditional knowledge management stores content, not operating judgement.",
+            cards: [
+              ["Facts", "Reports, policies, tickets, meeting notes, manuals and emails."],
+              ["Tacit logic", "Trade-offs, exceptions, relationships, escalation instincts and quality standards."],
+              ["Action", "The decision pattern that turns context into responsible work."],
+            ],
+            note: "This version fits pharma, insurance, manufacturing, consulting, energy, logistics and public sector.",
+          },
+          {
+            type: "fabric",
+            dark: true,
+            kicker: "OKF",
+            title: "Compounded concepts make knowledge structurally resilient.",
+            lead: "OKF breaks knowledge into traceable concepts and links them by evidence, ownership, decision boundaries and review quality. The goal is not infinite storage. The goal is continuity of reasoning.",
+            nodes: ["Source", "Concept", "Decision", "Boundary", "Standard"],
+            note: "Keep the technical idea, but phrase it as resilience and continuity.",
+          },
+          {
+            type: "architecture",
+            dark: true,
+            kicker: "Architecture",
+            title: "The intellectual twin turns reasoning into governed capability.",
+            steps: [
+              ["OKF", "Connected concepts"],
+              ["Twin", "Named human judgement"],
+              ["Butler", "Skill orchestration"],
+              ["Agents", "Task execution"],
+              ["Human loop", "Approval and refinement"],
+            ],
+            note: "This is the reusable architecture slide across industries.",
+          },
+          {
+            type: "benefits",
+            kicker: "Five benefits",
+            title: "The business case is continuity of judgement.",
+            benefits: [
+              ["Continuity", "Critical knowledge survives people moves and overload."],
+              ["Availability", "Scarce judgement supports more teams."],
+              ["Speed", "Work starts from accumulated context."],
+              ["Consistency", "Reviewed standards travel across locations."],
+              ["Compounding", "Every interaction improves the knowledge fabric."],
+            ],
+            note: "This is the generic value proposition.",
+          },
+          {
+            type: "cards",
+            dark: true,
+            kicker: "Example modules",
+            title: "Swap the examples, keep the mechanism.",
+            cards: [
+              ["Manufacturing", "Maintenance exception logic, shift handovers, supplier disruption and quality gates."],
+              ["Healthcare", "Clinical operations, care pathways, consent-sensitive knowledge and escalation logic."],
+              ["Professional services", "Client context, proposal quality, delivery risk and expert onboarding."],
+            ],
+            note: "This makes the deck portable to other industries.",
+          },
+          {
+            type: "demo",
+            kicker: "Demo pattern",
+            title: "One demo format works across industries.",
+            input: [
+              "A time-critical meeting or decision",
+              "Scattered source context from documents, messages and prior decisions",
+              "Instruction: prepare a governed decision brief",
+            ],
+            output: [
+              ["Summary", "What changed and why it matters."],
+              ["Decision", "Options, recommendation, owner and risk."],
+              ["Governance", "Evidence, confidence, open assumptions and approval gates."],
+            ],
+            note: "The demo template stays stable; only the source examples change.",
+          },
+          {
+            type: "cards",
+            kicker: "Twins interacting",
+            title: "A network of twins makes organizational knowledge visible.",
+            cards: [
+              ["Role perspective", "Each twin carries one person's or role's standards and constraints."],
+              ["Constructive disagreement", "Conflicts surface before they become political or invisible."],
+              ["Faster alignment", "Meetings start with mapped reasoning, not blank context."],
+            ],
+            note: "This is the multi-twin product vision.",
+          },
+          {
+            type: "quote",
+            dark: true,
+            kicker: "Meta-twin",
+            quote: "The company twin is not the average of everyone. It is an attributable council of institutional memory.",
+            note: "Keep the council image. It avoids the generic-AI objection.",
+          },
+          {
+            type: "final",
+            kicker: "The ask",
+            title: "Start where one missing expert would hurt.",
+            lead: "Choose one critical expert, one decision domain, one governed skill and one measurable pilot. Prove that judgement can be preserved, activated and improved before scaling.",
+            tags: ["Expert", "Domain", "Sources", "Skill", "Measurement"],
+            note: "This is the reusable pilot ask.",
+          },
+        ],
+      },
+    };
+
+    let mode = "wascosa";
+    let index = 0;
+
+    const slidesRoot = document.getElementById("slides");
+    const counter = document.getElementById("slideCounter");
+    const progress = document.getElementById("progressBar");
+    const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function esc(value) {
+      return String(value || "").replace(/[&<>"']/g, (char) => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;",
+      }[char]));
+    }
+
+    function renderTopbar(slide) {
+      return `
+        <header class="topbar">
+          <div class="brand"><img src="${assets.meids}" alt="MeIDs mark"><span>MeIDs</span></div>
+          <div class="mode-switch" aria-label="Deck mode">
+            ${Object.entries(decks).map(([key, deck]) => `<button type="button" class="${key === mode ? "active" : ""}" data-mode="${key}">${esc(deck.label)}</button>`).join("")}
+          </div>
+        </header>
+      `;
+    }
+
+    function renderJenga() {
+      const rows = Array.from({ length: 8 }, (_, row) => `
+        <div class="block-row">
+          ${Array.from({ length: 3 }, (_, col) => `<span class="block ${row === 3 && col === 1 ? "missing" : ""}"></span>`).join("")}
+        </div>
+      `).join("");
+      return `<div class="jenga">${rows}<span class="brace" aria-hidden="true"></span></div>`;
+    }
+
+    function renderFabric(slide) {
+      const labels = slide.nodes || [];
+      return `
+        <div class="concept-fabric">
+          ${labels.map((label, i) => `<span class="node n-${["a", "b", "c", "d", "e"][i]}">${esc(label)}</span>`).join("")}
+        </div>
+      `;
+    }
+
+    function renderBody(slide) {
+      if (slide.type === "hero" || slide.type === "final") {
+        return `
+          <div class="content">
+            <span class="kicker">${esc(slide.kicker)}</span>
+            <h1>${esc(slide.title)}</h1>
+            <p class="lead">${esc(slide.lead)}</p>
+            ${renderTags(slide.tags)}
+            <p class="notes">${esc(slide.note)}</p>
+          </div>
+        `;
+      }
+      if (slide.type === "jenga") {
+        return `
+          <div class="content split">
+            <div>
+              <span class="kicker">${esc(slide.kicker)}</span>
+              <h2>${esc(slide.title)}</h2>
+              <p class="lead">${esc(slide.lead)}</p>
+              <p class="notes">${esc(slide.note)}</p>
+            </div>
+            ${renderJenga()}
+          </div>
+        `;
+      }
+      if (slide.type === "quote") {
+        return `
+          <div class="content">
+            <span class="kicker">${esc(slide.kicker)}</span>
+            <div class="quote">${esc(slide.quote)}</div>
+            <p class="notes">${esc(slide.note)}</p>
+          </div>
+        `;
+      }
+      if (slide.type === "cards") {
+        return `
+          <div class="content">
+            <span class="kicker">${esc(slide.kicker)}</span>
+            <h2>${esc(slide.title)}</h2>
+            <div class="cards">${slide.cards.map((card) => `<div class="card"><strong>${esc(card[0])}</strong><span>${esc(card[1])}</span></div>`).join("")}</div>
+            <p class="notes">${esc(slide.note)}</p>
+          </div>
+        `;
+      }
+      if (slide.type === "fabric") {
+        return `
+          <div class="content split">
+            <div>
+              <span class="kicker">${esc(slide.kicker)}</span>
+              <h2>${esc(slide.title)}</h2>
+              <p class="lead">${esc(slide.lead)}</p>
+              <p class="notes">${esc(slide.note)}</p>
+            </div>
+            ${renderFabric(slide)}
+          </div>
+        `;
+      }
+      if (slide.type === "architecture") {
+        return `
+          <div class="content">
+            <span class="kicker">${esc(slide.kicker)}</span>
+            <h2>${esc(slide.title)}</h2>
+            <div class="architecture">${slide.steps.map((step) => `<div class="arch"><b>${esc(step[0])}</b><span>${esc(step[1])}</span></div>`).join("")}</div>
+            <p class="notes">${esc(slide.note)}</p>
+          </div>
+        `;
+      }
+      if (slide.type === "benefits") {
+        return `
+          <div class="content">
+            <span class="kicker">${esc(slide.kicker)}</span>
+            <h2>${esc(slide.title)}</h2>
+            <div class="benefits">${slide.benefits.map((benefit) => `<div class="benefit"><b>${esc(benefit[0])}</b><span>${esc(benefit[1])}</span></div>`).join("")}</div>
+            <p class="notes">${esc(slide.note)}</p>
+          </div>
+        `;
+      }
+      if (slide.type === "demo") {
+        return `
+          <div class="content">
+            <span class="kicker">${esc(slide.kicker)}</span>
+            <h2>${esc(slide.title)}</h2>
+            <div class="demo">
+              <div class="demo-panel">
+                <strong>Input context</strong>
+                ${slide.input.map((line) => `<div class="demo-line">${esc(line)}</div>`).join("")}
+              </div>
+              <div class="demo-panel">
+                <strong>Twin output</strong>
+                ${slide.output.map((line) => `<div class="demo-line"><strong>${esc(line[0])}</strong><br>${esc(line[1])}</div>`).join("")}
+              </div>
+            </div>
+            <p class="notes">${esc(slide.note)}</p>
+          </div>
+        `;
+      }
+      return "";
+    }
+
+    function renderTags(tags = []) {
+      return `<div class="tagline">${tags.map((tag) => `<span>${esc(tag)}</span>`).join("")}</div>`;
+    }
+
+    function renderFooter(slide, slideIndex, total) {
+      return `
+        <footer class="footer">
+          <span>Stage keynote - one idea per slide - contrast, concrete story, clear ask</span>
+          <span>${esc(slide.kicker)} - ${slideIndex + 1} / ${total}</span>
+        </footer>
+      `;
+    }
+
+    function renderDeck() {
+      const current = decks[mode];
+      slidesRoot.innerHTML = current.slides.map((slide, slideIndex) => `
+        <article class="slide ${slide.dark ? "dark" : ""} ${slide.type === "hero" ? "hero" : ""} ${slideIndex === index ? "active" : ""}">
+          ${renderTopbar(slide)}
+          ${renderBody(slide)}
+          ${renderFooter(slide, slideIndex, current.slides.length)}
+        </article>
+      `).join("");
+      counter.textContent = `${index + 1} / ${current.slides.length}`;
+      progress.style.width = `${((index + 1) / current.slides.length) * 100}%`;
+      prevBtn.textContent = "Previous";
+      nextBtn.textContent = "Next";
+      document.querySelectorAll("[data-mode]").forEach((button) => {
+        button.addEventListener("click", () => {
+          mode = button.dataset.mode;
+          index = 0;
+          renderDeck();
+        });
+      });
+    }
+
+    function showSlide(nextIndex) {
+      const total = decks[mode].slides.length;
+      index = Math.max(0, Math.min(total - 1, nextIndex));
+      renderDeck();
+    }
+
+    prevBtn.addEventListener("click", () => showSlide(index - 1));
+    nextBtn.addEventListener("click", () => showSlide(index + 1));
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") showSlide(index + 1);
+      if (event.key === "ArrowLeft" || event.key === "PageUp") showSlide(index - 1);
+      if (event.key === "1") { mode = "wascosa"; index = 0; renderDeck(); }
+      if (event.key === "2") { mode = "generic"; index = 0; renderDeck(); }
+    });
+
+    renderDeck();
+  </script>
+</body>
+</html>
