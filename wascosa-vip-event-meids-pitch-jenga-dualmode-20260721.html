@@ -16,7 +16,7 @@
       --gold: #d9b76a;
       --blue: #6ea8ff;
       --dark: #0e1211;
-      --panel: rgba(255, 252, 244, 0.82);
+      --panel: rgba(255, 252, 244, 0.84);
       --shadow: 0 34px 110px rgba(16, 19, 18, 0.18);
       font-family: Inter, "Segoe UI", Arial, sans-serif;
     }
@@ -49,8 +49,8 @@
       inset: 0;
       display: none;
       grid-template-rows: auto 1fr auto;
-      gap: 24px;
-      padding: 44px 62px 34px;
+      gap: 18px;
+      padding: 42px 70px 32px;
       background:
         radial-gradient(circle at 18% 10%, rgba(255, 107, 43, 0.12), transparent 28%),
         linear-gradient(145deg, rgba(247, 243, 234, 0.98), rgba(235, 230, 219, 0.96));
@@ -86,9 +86,9 @@
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 12px;
-      min-height: 46px;
-      padding: 8px 12px;
+      gap: 11px;
+      min-height: 48px;
+      padding: 8px 14px 8px 10px;
       border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
       border-radius: 18px;
       background: color-mix(in srgb, currentColor 6%, transparent);
@@ -96,21 +96,58 @@
       font-weight: 900;
     }
 
-    .brand img {
-      width: 34px;
-      height: 34px;
-      border-radius: 10px;
-      background: #050707;
-      object-fit: contain;
+    .brand-mark {
+      position: relative;
+      display: inline-grid;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+      border-radius: 12px;
+      background: rgba(5, 7, 7, 0.86);
+      overflow: hidden;
     }
 
-    .mode-switch {
+    .brand-mark::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      border: 2px solid #fff9ed;
+      border-right-style: dotted;
+      border-radius: 999px;
+      box-shadow: 8px 0 0 -3px rgba(145, 230, 206, 0.85);
+    }
+
+    .brand span {
+      display: grid;
+      gap: 1px;
+      line-height: 1;
+    }
+
+    .brand small {
+      color: color-mix(in srgb, currentColor 58%, transparent);
+      font-size: 10px;
+      font-weight: 760;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .switches {
       display: inline-flex;
-      gap: 6px;
-      padding: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .mode-switch,
+    .lang-switch {
+      display: inline-flex;
+      gap: 4px;
+      padding: 5px;
       border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
       border-radius: 999px;
       background: color-mix(in srgb, currentColor 6%, transparent);
+      backdrop-filter: blur(14px);
     }
 
     button {
@@ -122,13 +159,16 @@
     }
 
     .mode-switch button,
+    .lang-switch button,
     .controls button {
-      padding: 10px 14px;
+      padding: 9px 12px;
       color: inherit;
       background: transparent;
+      font-size: 13px;
     }
 
-    .mode-switch button.active {
+    .mode-switch button.active,
+    .lang-switch button.active {
       background: var(--mint);
       color: var(--ink);
     }
@@ -136,7 +176,7 @@
     .content {
       display: grid;
       align-content: center;
-      gap: 30px;
+      gap: 26px;
       min-height: 0;
     }
 
@@ -170,16 +210,16 @@
     }
 
     .lead {
-      max-width: 960px;
+      max-width: 900px;
       color: color-mix(in srgb, currentColor 72%, transparent);
-      font-size: 24px;
-      line-height: 1.38;
+      font-size: 23px;
+      line-height: 1.36;
     }
 
     .split {
       display: grid;
       grid-template-columns: minmax(0, 1.02fr) minmax(420px, 0.98fr);
-      gap: 34px;
+      gap: 42px;
       align-items: center;
     }
 
@@ -217,8 +257,8 @@
     .step {
       display: grid;
       gap: 12px;
-      min-height: 168px;
-      padding: 24px;
+      min-height: 158px;
+      padding: 22px;
     }
 
     .card strong,
@@ -238,7 +278,7 @@
     .benefit {
       display: grid;
       gap: 9px;
-      min-height: 150px;
+      min-height: 142px;
       padding: 18px;
       border: 1px solid color-mix(in srgb, currentColor 18%, transparent);
       border-radius: 14px;
@@ -422,12 +462,42 @@
       max-width: 920px;
       padding-top: 4px;
       font-size: 14px;
+      display: none;
     }
 
     .footer {
-      color: color-mix(in srgb, currentColor 56%, transparent);
+      justify-content: flex-end;
+      color: color-mix(in srgb, currentColor 70%, transparent);
       font-size: 12px;
       font-weight: 760;
+    }
+
+    .eraneos-signature {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      opacity: 0.86;
+    }
+
+    .eraneos-signature img {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+
+    .dark .eraneos-signature img,
+    .hero .eraneos-signature img {
+      filter: invert(1);
+    }
+
+    .eraneos-signature strong {
+      color: currentColor;
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .eraneos-signature span {
+      color: color-mix(in srgb, currentColor 64%, transparent);
     }
 
     .controls {
@@ -487,6 +557,7 @@
     const assets = {
       meids: "pitch-assets/meids-symbol.svg",
       wascosa: "pitch-assets/wascosa-logo.svg",
+      eraneos: "pitch-assets/eraneos-mark.png",
     };
 
     const decks = {
@@ -495,10 +566,10 @@
         slides: [
           {
             type: "hero",
-            kicker: "Wascosa Circle Event - stage keynote",
+            kicker: "Wascosa Circle Event",
             title: "What leaves when the expert leaves?",
             lead: "In cargo rail, the dangerous loss is not only headcount. It is the invisible judgement that keeps complex systems structurally intact.",
-            tags: ["Jenga story spine", "Expert knowledge risk", "MeIDs intellectual twin", "Wascosa-ready pilot"],
+            tags: ["Expert knowledge risk", "Compound knowledge fabric", "MeIDs intellectual twin", "Wascosa-ready pilot"],
             note: "Open with one person, one story. Do not explain technology yet. Make the room feel the knowledge-loss problem before naming the solution.",
           },
           {
@@ -529,9 +600,9 @@
           {
             type: "fabric",
             dark: true,
-            kicker: "OKF: compounded knowledge",
-            title: "The fix is not a bigger database. It is a resilient concept fabric.",
-            lead: "OKF captures knowledge as connected concepts: sources, assertions, reasoning paths, decision boundaries, confidence, owners and review states. Instead of one bulk archive, the organization gains a structure that can absorb loss and keep reasoning intact.",
+            kicker: "CKF: compound knowledge fabric",
+            title: "The fix is not a bigger database. It is a resilient compound knowledge fabric.",
+            lead: "CKF is a specific expression of an Open Knowledge Format cluster: sources, assertions, reasoning paths, decision boundaries, confidence, owners and review states. Instead of one bulk archive, we institutionalize a specific organizational memory that can absorb loss and keep reasoning intact.",
             nodes: ["Evidence", "Concept", "Reasoning", "Boundary", "Review"],
             note: "Use the resilient Jenga turn here: imagine blocks can be removed, but the structure remains functional because relationships and load paths are preserved.",
           },
@@ -541,11 +612,11 @@
             kicker: "Architecture on the main stage",
             title: "A twin turns concept fabric into governed action.",
             steps: [
-              ["OKF", "Compounded knowledge concepts"],
+              ["CKF", "Compound knowledge fabric"],
               ["Twin", "Named expert judgement"],
-              ["Butler", "Skill acquisition layer"],
+              ["Agentic Butler", "Skill augmentation"],
               ["Agents", "Narrow task execution"],
-              ["Human loop", "Quality, ethics, approval"],
+              ["Human loop", "Co-creation and refinement"],
             ],
             note: "Narrate left to right. The butler is the capability bridge: more than adding agent after agent.",
           },
@@ -606,13 +677,13 @@
             dark: true,
             kicker: "Company twin",
             quote: "The horizon is a company you can ask - not one averaged brain, but a council of attributable judgement.",
-            note: "Make the meta-twin bold. It aggregates OKF fabrics while preserving who said what and why.",
+            note: "Make the meta-twin bold. It aggregates CKF fabrics while preserving who said what and why.",
           },
           {
             type: "final",
             kicker: "The ask",
             title: "One expert. One domain. One resilient tower.",
-            lead: "Start with a Wascosa-relevant expert and one decision domain. Capture real examples, build the OKF fabric, activate one governed skill, and compare expert output with twin output over twelve months.",
+            lead: "Start with a Wascosa-relevant expert and one decision domain. Capture real examples, build the CKF fabric, activate one governed skill, and compare expert output with twin output over twelve months.",
             tags: ["Pick the expert", "Choose the domain", "Capture real decisions", "Build one skill", "Measure continuity"],
             note: "End with a concrete pilot, not a platform promise.",
           },
@@ -623,10 +694,10 @@
         slides: [
           {
             type: "hero",
-            kicker: "Generic executive keynote",
+            kicker: "Your strongest process may depend on knowledge nobody can see.",
             title: "What leaves when the expert leaves?",
             lead: "Every knowledge-intensive organization has people whose judgement keeps the system intact. The problem is that nobody knows which knowledge blocks are weight-bearing until one is removed.",
-            tags: ["Reusable keynote spine", "Industry-neutral", "Expert continuity", "Intellectual twin"],
+            tags: ["Expert continuity", "Compound knowledge fabric", "Intellectual twin", "Governed capability"],
             note: "Replace the industry noun and the examples, not the core story.",
           },
           {
@@ -641,7 +712,7 @@
             dark: true,
             kicker: "The strategic risk",
             quote: "You cannot govern what you cannot see. You cannot preserve what you never made explicit.",
-            note: "Industry-neutral memorable line.",
+            note: "Use this as the transferable problem statement for other industries.",
           },
           {
             type: "cards",
@@ -657,9 +728,9 @@
           {
             type: "fabric",
             dark: true,
-            kicker: "OKF",
-            title: "Compounded concepts make knowledge structurally resilient.",
-            lead: "OKF breaks knowledge into traceable concepts and links them by evidence, ownership, decision boundaries and review quality. The goal is not infinite storage. The goal is continuity of reasoning.",
+            kicker: "CKF",
+            title: "Compound concepts make knowledge structurally resilient.",
+            lead: "CKF is a specific expression of an Open Knowledge Format cluster. It breaks knowledge into traceable concepts and links them by evidence, ownership, decision boundaries and review quality. The goal is not infinite storage. The goal is continuity of reasoning.",
             nodes: ["Source", "Concept", "Decision", "Boundary", "Standard"],
             note: "Keep the technical idea, but phrase it as resilience and continuity.",
           },
@@ -669,11 +740,11 @@
             kicker: "Architecture",
             title: "The intellectual twin turns reasoning into governed capability.",
             steps: [
-              ["OKF", "Connected concepts"],
+              ["CKF", "Compound knowledge fabric"],
               ["Twin", "Named human judgement"],
-              ["Butler", "Skill orchestration"],
+              ["Agentic Butler", "Skill augmentation"],
               ["Agents", "Task execution"],
-              ["Human loop", "Approval and refinement"],
+              ["Human loop", "Co-creation and refinement"],
             ],
             note: "This is the reusable architecture slide across industries.",
           },
@@ -748,7 +819,238 @@
       },
     };
 
+    decks.wascosa.labelDe = "Wascosa / Cargo Rail";
+    decks.generic.labelDe = "Branchenvorlage";
+    decks.wascosa.deSlides = [
+      {
+        type: "hero",
+        kicker: "Wascosa Circle Event",
+        title: "Was geht, wenn der Experte geht?",
+        lead: "Im Cargo Rail ist der gefaehrliche Verlust nicht nur Headcount. Es ist das unsichtbare Urteil, das komplexe Systeme strukturell intakt haelt.",
+        tags: ["Expertenwissensrisiko", "Compound Knowledge Fabric", "MeIDs Intellectual Twin", "Wascosa-ready Pilot"],
+      },
+      {
+        type: "jenga",
+        kicker: "Das Jenga-Problem",
+        title: "Sie wissen nicht, welcher Wissensblock tragend ist.",
+        lead: "Organisationen verhalten sich wie Jenga-Tuerme. Entfernt man einen Experten, eine Dispatcher-Logik oder eine Maintenance Authority, erkennt man oft zu spaet, ob dieser Block die Struktur getragen hat.",
+      },
+      {
+        type: "quote",
+        dark: true,
+        kicker: "Das strategische Risiko",
+        quote: "Das Risiko ist nicht nur, dass Wissen verschwindet. Das Risiko ist, dass niemand weiss, welches fehlende Konzept kritisch war.",
+      },
+      {
+        type: "cards",
+        kicker: "Warum Dokumente scheitern",
+        title: "Dateien bewahren Aussagen. Sie bewahren selten Urteil.",
+        cards: [
+          ["Der Fakt", "Eine Maintenance Note, ein Kundenthema, eine Werkstattrestriktion oder ein Korridorsignal."],
+          ["Die Logik", "Warum der Experte den Fall als normal, kritisch, politisch sensibel oder eskalationspflichtig bewertet."],
+          ["Die Konsequenz", "Welche Aktion sicher ist, welche Freigabe braucht und welches Versprechen nicht gemacht werden darf."],
+        ],
+      },
+      {
+        type: "fabric",
+        dark: true,
+        kicker: "CKF: Compound Knowledge Fabric",
+        title: "Die Loesung ist keine groessere Datenbank. Sie ist ein resilientes Organisationsgedaechtnis.",
+        lead: "CKF ist eine spezifische Auspraegung eines Open-Knowledge-Format-Clusters. Wir institutionalisieren ein spezifisches Organisationsgedaechtnis: Quellen, Aussagen, Begruendungspfade, Entscheidungsgrenzen, Confidence, Ownership und Review States.",
+        nodes: ["Evidenz", "Konzept", "Begruendung", "Grenze", "Review"],
+      },
+      {
+        type: "architecture",
+        dark: true,
+        kicker: "Architektur",
+        title: "Ein Twin macht aus dem CKF gesteuerte Faehigkeit.",
+        steps: [
+          ["CKF", "Compound Knowledge Fabric"],
+          ["Twin", "Benanntes Expertenurteil"],
+          ["Agentic Butler", "Skill Augmentation"],
+          ["Agents", "Eng definierte Ausfuehrung"],
+          ["Human Loop", "Co-Creation und Refinement"],
+        ],
+      },
+      {
+        type: "benefits",
+        kicker: "Fuenf Executive Benefits",
+        title: "Was entsteht, wenn der Turm resilient wird.",
+        benefits: [
+          ["Kontinuitaet", "Expertenurteil ueberlebt Ruhestand, Krankheit und ueberlastete Uebergaben."],
+          ["Verfuegbarkeit", "Seltenes Urteil wirkt in mehr Raeumen, Schichten und Laendern."],
+          ["Tempo", "Entscheidungen starten aus bestehendem Kontext statt aus wiederholtem Re-Briefing."],
+          ["Konsistenz", "Ein gepruefter Standard reist ueber Teams und Standorte."],
+          ["Compounding", "Jede gepruefte Nutzung staerkt das Wissensgewebe."],
+        ],
+      },
+      {
+        type: "cards",
+        dark: true,
+        kicker: "Cargo-Beispiele",
+        title: "Kernprobleme im Cargo werden twin-ready Work.",
+        cards: [
+          ["Service Continuity", "Decision Brief aus Wagenverfuegbarkeit, Werkstattslots, Kundenzusagen und frueheren Ausnahmen."],
+          ["Maintenance Exception", "Korrosionslogik, Praezedenz, Confidence und Eskalationsbedarf sichtbar machen."],
+          ["DAC Migration", "Trade-offs ueber Retrofit, Korridorreife, Vertraege, Werkstaetten und Regulatorik modellieren."],
+        ],
+      },
+      {
+        type: "demo",
+        kicker: "Demo-Fokus",
+        title: "Eine kontrollierte Story: verstreuter Kontext wird Decision Brief.",
+        input: [
+          "Meeting blocker: Service-Continuity Alignment",
+          "Quellen: Kalender, Kundennotizen, Wagenkontext, Maintenance Signal, fruehere Entscheidungen",
+          "Instruction: Executive Decision Brief vorbereiten",
+        ],
+        output: [
+          ["Executive Summary", "Was sich veraendert hat, warum es zaehlt und wo Entscheidungsdruck liegt."],
+          ["Optionen", "Empfohlener Pfad, Alternative, Risiko, Owner und Next Action."],
+          ["Trace", "Quellen, Confidence, offene Annahmen und Human Approval Gates."],
+        ],
+      },
+      {
+        type: "cards",
+        kicker: "Twins im Dialog",
+        title: "Wenn Twins interagieren, wird Widerspruch sichtbar.",
+        cards: [
+          ["Maintenance Twin", "Schuetzt technische Grenzen, Service-Risiken und Ausnahmelogik."],
+          ["Commercial Twin", "Schuetzt Kundenversprechen, Beziehungshistorie und Kommunikationssensibilitaet."],
+          ["Regulatory Twin", "Schuetzt Compliance-Grenzen und zeigt, wo Confidence stoppen muss."],
+        ],
+      },
+      {
+        type: "quote",
+        dark: true,
+        kicker: "Company Twin",
+        quote: "Der Horizont ist ein Unternehmen, das man fragen kann - kein gemitteltes Gehirn, sondern ein Council zurechenbaren Urteils.",
+      },
+      {
+        type: "final",
+        kicker: "Der Ask",
+        title: "Ein Experte. Eine Domaene. Ein resilienter Turm.",
+        lead: "Starten Sie mit einem Wascosa-relevanten Experten und einer Entscheidungsdomaene. Reale Beispiele erfassen, CKF aufbauen, einen gesteuerten Skill aktivieren und Expert Output mit Twin Output vergleichen.",
+        tags: ["Experte waehlen", "Domaene definieren", "Reale Entscheidungen erfassen", "Einen Skill bauen", "Kontinuitaet messen"],
+      },
+    ];
+
+    decks.generic.deSlides = [
+      {
+        type: "hero",
+        kicker: "Ihr staerkster Prozess haengt vielleicht an Wissen, das niemand sehen kann.",
+        title: "Was geht, wenn der Experte geht?",
+        lead: "Jede wissensintensive Organisation hat Menschen, deren Urteil das System intakt haelt. Das Problem: Niemand weiss, welche Wissensbloecke tragend sind, bis einer entfernt wird.",
+        tags: ["Expertenkontinuitaet", "Compound Knowledge Fabric", "Intellectual Twin", "Gesteuerte Faehigkeit"],
+      },
+      {
+        type: "jenga",
+        kicker: "Das Jenga-Problem",
+        title: "Organisationen verlieren kritisches Wissen unsichtbar.",
+        lead: "Prozesse wirken stabil, bis ein bestimmtes menschliches Urteil fehlt. Dann zeigt sich, dass genau dieser fehlende Block zur tragenden Struktur gehoerte.",
+      },
+      {
+        type: "quote",
+        dark: true,
+        kicker: "Das strategische Risiko",
+        quote: "Man kann nicht steuern, was man nicht sieht. Man kann nicht bewahren, was nie explizit wurde.",
+      },
+      {
+        type: "cards",
+        kicker: "Warum Dokumente scheitern",
+        title: "Klassisches Knowledge Management speichert Content, nicht Operating Judgement.",
+        cards: [
+          ["Fakten", "Reports, Policies, Tickets, Meeting Notes, Manuals und E-Mails."],
+          ["Implizite Logik", "Trade-offs, Ausnahmen, Beziehungen, Eskalationsinstinkt und Qualitaetsstandards."],
+          ["Handlung", "Das Entscheidungsmuster, das Kontext in verantwortliche Arbeit uebersetzt."],
+        ],
+      },
+      {
+        type: "fabric",
+        dark: true,
+        kicker: "CKF",
+        title: "Compound Concepts machen Wissen strukturell resilient.",
+        lead: "CKF ist eine spezifische Auspraegung eines Open-Knowledge-Format-Clusters. Es zerlegt Wissen in nachvollziehbare Konzepte und verbindet sie ueber Evidenz, Ownership, Entscheidungsgrenzen und Review-Qualitaet.",
+        nodes: ["Quelle", "Konzept", "Entscheidung", "Grenze", "Standard"],
+      },
+      {
+        type: "architecture",
+        dark: true,
+        kicker: "Architektur",
+        title: "Der Intellectual Twin uebersetzt Reasoning in gesteuerte Faehigkeit.",
+        steps: [
+          ["CKF", "Compound Knowledge Fabric"],
+          ["Twin", "Benanntes menschliches Urteil"],
+          ["Agentic Butler", "Skill Augmentation"],
+          ["Agents", "Task Execution"],
+          ["Human Loop", "Co-Creation und Refinement"],
+        ],
+      },
+      {
+        type: "benefits",
+        kicker: "Fuenf Benefits",
+        title: "Der Business Case ist Kontinuitaet von Urteil.",
+        benefits: [
+          ["Kontinuitaet", "Kritisches Wissen ueberlebt Rollenwechsel und Ueberlastung."],
+          ["Verfuegbarkeit", "Seltenes Urteil unterstuetzt mehr Teams."],
+          ["Tempo", "Arbeit startet aus akkumuliertem Kontext."],
+          ["Konsistenz", "Gepruefte Standards reisen ueber Standorte."],
+          ["Compounding", "Jede Interaktion verbessert das Wissensgewebe."],
+        ],
+      },
+      {
+        type: "cards",
+        dark: true,
+        kicker: "Beispielmodule",
+        title: "Die Beispiele wechseln. Der Mechanismus bleibt.",
+        cards: [
+          ["Manufacturing", "Maintenance Exceptions, Schichtuebergaben, Supplier Disruption und Quality Gates."],
+          ["Healthcare", "Clinical Operations, Care Pathways, Consent-sensitive Knowledge und Eskalationslogik."],
+          ["Professional Services", "Client Context, Proposal Quality, Delivery Risk und Expert Onboarding."],
+        ],
+      },
+      {
+        type: "demo",
+        kicker: "Demo-Muster",
+        title: "Ein Demo-Format funktioniert branchenuebergreifend.",
+        input: [
+          "Zeitkritisches Meeting oder Entscheidung",
+          "Verstreuter Kontext aus Dokumenten, Nachrichten und frueheren Entscheidungen",
+          "Instruction: Governed Decision Brief vorbereiten",
+        ],
+        output: [
+          ["Summary", "Was sich veraendert hat und warum es zaehlt."],
+          ["Decision", "Optionen, Empfehlung, Owner und Risiko."],
+          ["Governance", "Evidenz, Confidence, offene Annahmen und Approval Gates."],
+        ],
+      },
+      {
+        type: "cards",
+        kicker: "Twins interagieren",
+        title: "Ein Netzwerk von Twins macht Organisationswissen sichtbar.",
+        cards: [
+          ["Rollenperspektive", "Jeder Twin traegt Standards und Grenzen einer Person oder Rolle."],
+          ["Konstruktiver Widerspruch", "Konflikte werden sichtbar, bevor sie politisch oder unsichtbar werden."],
+          ["Schnellere Ausrichtung", "Meetings starten mit gemapptem Reasoning statt leerem Kontext."],
+        ],
+      },
+      {
+        type: "quote",
+        dark: true,
+        kicker: "Meta-Twin",
+        quote: "Der Company Twin ist nicht der Durchschnitt aller. Er ist ein zurechenbarer Council institutionellen Gedaechtnisses.",
+      },
+      {
+        type: "final",
+        kicker: "Der Ask",
+        title: "Starten Sie dort, wo ein fehlender Experte weh tun wuerde.",
+        lead: "Waehlen Sie einen kritischen Experten, eine Entscheidungsdomaene, einen gesteuerten Skill und einen messbaren Pilot. Beweisen Sie, dass Urteil bewahrt, aktiviert und verbessert werden kann.",
+        tags: ["Experte", "Domaene", "Quellen", "Skill", "Messung"],
+      },
+    ];
+
     let mode = "wascosa";
+    let lang = "en";
     let index = 0;
 
     const slidesRoot = document.getElementById("slides");
@@ -770,9 +1072,15 @@
     function renderTopbar(slide) {
       return `
         <header class="topbar">
-          <div class="brand"><img src="${assets.meids}" alt="MeIDs mark"><span>MeIDs</span></div>
-          <div class="mode-switch" aria-label="Deck mode">
-            ${Object.entries(decks).map(([key, deck]) => `<button type="button" class="${key === mode ? "active" : ""}" data-mode="${key}">${esc(deck.label)}</button>`).join("")}
+          <div class="brand"><span class="brand-mark" aria-hidden="true"></span><span>MeIDs<small>Intellectual twin</small></span></div>
+          <div class="switches">
+            <div class="mode-switch" aria-label="Deck mode">
+              ${Object.entries(decks).map(([key, deck]) => `<button type="button" class="${key === mode ? "active" : ""}" data-mode="${key}">${esc(lang === "de" ? deck.labelDe : deck.label)}</button>`).join("")}
+            </div>
+            <div class="lang-switch" aria-label="Language">
+              <button type="button" class="${lang === "en" ? "active" : ""}" data-lang="en">EN</button>
+              <button type="button" class="${lang === "de" ? "active" : ""}" data-lang="de">DE</button>
+            </div>
           </div>
         </header>
       `;
@@ -902,25 +1210,30 @@
     function renderFooter(slide, slideIndex, total) {
       return `
         <footer class="footer">
-          <span>Stage keynote - one idea per slide - contrast, concrete story, clear ask</span>
-          <span>${esc(slide.kicker)} - ${slideIndex + 1} / ${total}</span>
+          <span class="eraneos-signature"><img src="${assets.eraneos}" alt="Eraneos mark"><strong>eraneos</strong><span>enabling innovation</span></span>
         </footer>
       `;
     }
 
+    function currentSlides() {
+      const current = decks[mode];
+      return lang === "de" ? current.deSlides : current.slides;
+    }
+
     function renderDeck() {
       const current = decks[mode];
-      slidesRoot.innerHTML = current.slides.map((slide, slideIndex) => `
+      const slides = currentSlides();
+      slidesRoot.innerHTML = slides.map((slide, slideIndex) => `
         <article class="slide ${slide.dark ? "dark" : ""} ${slide.type === "hero" ? "hero" : ""} ${slideIndex === index ? "active" : ""}">
           ${renderTopbar(slide)}
           ${renderBody(slide)}
-          ${renderFooter(slide, slideIndex, current.slides.length)}
+          ${renderFooter(slide, slideIndex, slides.length)}
         </article>
       `).join("");
-      counter.textContent = `${index + 1} / ${current.slides.length}`;
-      progress.style.width = `${((index + 1) / current.slides.length) * 100}%`;
-      prevBtn.textContent = "Previous";
-      nextBtn.textContent = "Next";
+      counter.textContent = `${index + 1} / ${slides.length}`;
+      progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+      prevBtn.textContent = lang === "de" ? "Zurueck" : "Previous";
+      nextBtn.textContent = lang === "de" ? "Weiter" : "Next";
       document.querySelectorAll("[data-mode]").forEach((button) => {
         button.addEventListener("click", () => {
           mode = button.dataset.mode;
@@ -928,10 +1241,17 @@
           renderDeck();
         });
       });
+      document.querySelectorAll("[data-lang]").forEach((button) => {
+        button.addEventListener("click", () => {
+          lang = button.dataset.lang;
+          index = 0;
+          renderDeck();
+        });
+      });
     }
 
     function showSlide(nextIndex) {
-      const total = decks[mode].slides.length;
+      const total = currentSlides().length;
       index = Math.max(0, Math.min(total - 1, nextIndex));
       renderDeck();
     }
@@ -943,6 +1263,8 @@
       if (event.key === "ArrowLeft" || event.key === "PageUp") showSlide(index - 1);
       if (event.key === "1") { mode = "wascosa"; index = 0; renderDeck(); }
       if (event.key === "2") { mode = "generic"; index = 0; renderDeck(); }
+      if (event.key.toLowerCase() === "e") { lang = "en"; index = 0; renderDeck(); }
+      if (event.key.toLowerCase() === "d") { lang = "de"; index = 0; renderDeck(); }
     });
 
     renderDeck();
